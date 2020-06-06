@@ -16,7 +16,7 @@ data_am.to_csv('wowoemotion_am.csv', sep=';')
 def create_experiment_overview(df_experiment, language):
     base_name = datetime.now().strftime("%Y%m%d-%H%M%S")
 
-    overview = pd.DataFrame(columns=['session', 'sex', 'age'])
+    overview = pd.DataFrame(columns=['session', 'sex', 'age', 'language', 'foreign_language', 'control_question', 'duration'])
 
     sessions = df_experiment['sessionid'].unique()
     print(sessions, len(sessions))
@@ -29,6 +29,12 @@ def create_experiment_overview(df_experiment, language):
             session_overview['session'] = session_data['sessionid'].unique()
             session_overview['sex'] = session_data['sex'].unique()
             session_overview['age'] = session_data['participantage'].unique()
+            session_overview['language'] = session_data['firstlanguage'].unique()
+            session_overview['foreign_language'] = session_data['foreignlanguages'].unique()
+            #itemis for the control question: armenian = 2287589, german = 2286153
+            control_q =  session_data.loc[(session_data['itemid']==2287589) | (session_data['itemid']==2286153)]
+            session_overview['control_question'] = control_q['inputvalue'].values[0] if control_q['inputvalue'].any() else 'Nothing'
+
 
             overview = pd.concat([overview, session_overview])
 
