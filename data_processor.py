@@ -1,6 +1,7 @@
+import json
 import os
 from datetime import datetime
-
+import pandas as pd
 
 def get_datetime_str(dt):
     '''
@@ -29,4 +30,81 @@ def get_filelist_in_folder(path):
     return file_list
 
 
+
+def read_raw_data(file):
+    df = pd.read_csv(file, sep='\t')
+    return df
+
+def get_session_data(df, session_id):
+    session_data = df.loc[df['sessionid'] == session_id]
+    return session_data
+
+def get_session_list(df):
+    sessions = df['sessionid'].unique()
+    return sessions
+
+def get_question(dict):
+    options = json.loads(dict)
+    return options['label']
+
+
+def check_session_length(df_session):
+
+    if len(df_session) == 151:
+        return True
+
+    return False
+
+
+def check_first_language(df_session, language):
+
+    if df_session['experiment'].str.lower().contains(language).any():
+        return True
+
+    return False
+
+
+def check_participant_age (df_session):
+
+    participant_age = df_session['participantage'].unique()
+    if  int(participant_age) < 90 and int(participant_age) > 10:
+        return True
+
+    return False
+
+def check_foreign_languages(df_session):
+    '''
+    returns False if any of the foreign languages of the participant is invalid
+    '''
+    invalid_languages = ['deutsch', 'arm', 'armenian', 'հայ', 'հայերեն', 'հայոց']
+    foreign_languages = df_session['foreignlanguage'].unique()
+
+    for invalid_language in invalid_languages:
+        if invalid_languages.isin(foreign_languages):
+            return False
+
+    return True
+
+
+def check_control_question(df_session):
+    '''
+    control question was to choose 'applause' instead of an emotion, when they hear clappig hands instead of human speech
+    '''
+
+    #loc the row containing control question and check inputvalue
+
+    pass
+
+
+def experiment_conditions_fulfilled(df_session, language):
+    '''
+    check if the experiment conditions are fulfilled for the given session
+    1. 151 entries in 1 session
+    2. age is valied (<90, >10)
+    3. firstlanguage is the same as the experiment language
+    4, foreignlanguage doesn't include german or armenian languages
+    5  the answer for the control question is correct
+    '''
+
+    pass
 
