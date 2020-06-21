@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import datetime
 import json
+
 path = './raw_data/final_data'
 
 #some variables
