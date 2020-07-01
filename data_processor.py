@@ -90,6 +90,8 @@ def get_data_with_condition(df, field, value):
 
     data = df.loc[df[field]==value]
 
+    return data
+
 def get_data_per_emotion(df, emotion):
     df_emotion = df.loc[df['axpected'].str.contains(emotion)]
 
