@@ -80,11 +80,20 @@ def check_foreign_languages(df_session):
     foreign_languages = df_session['foreignlanguage'].unique()
 
     for invalid_language in invalid_languages:
-        if invalid_languages.isin(foreign_languages):
+        if invalid_language.isin(foreign_languages):
             return False
 
     return True
 
+
+def get_data_with_condition(df, field, value):
+
+    data = df.loc[df[field]==value]
+
+def get_data_per_emotion(df, emotion):
+    df_emotion = df.loc[df['axpected'].str.contains(emotion)]
+
+    return df_emotion
 
 def check_control_question(df_session):
     '''

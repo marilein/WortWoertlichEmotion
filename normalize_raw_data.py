@@ -22,6 +22,12 @@ def create_itemlist_per_experiment(path):
         session_list = dtp.get_session_list(annotation_data)
 
         for session in session_list:
-            df_session = annotation_data.loc[annotation_data['sessionid']==session]
+            #df_session = annotation_data.loc[annotation_data['sessionid']==session]
+            if dtp.check_session_length(session):
+                df_session = dtp.get_session_data(annotation_data, session)
+
             #TODO check whether the reuquirements are fulfilled
             pass
+
+
+
