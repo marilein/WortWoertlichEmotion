@@ -10,7 +10,7 @@ base_path = 'raw_data/final_data/'
 
 #experiment_list = dtp.get_filelist_in_folder(base_path)
 
-def create_itemlist_per_experiment(path):
+def create_plots_per_emotion(path):
     annotaion_files = dtp.get_filelist_in_folder(path)
 
     for f in annotaion_files:
@@ -20,7 +20,15 @@ def create_itemlist_per_experiment(path):
         #json_question = annotation_data['options'].apply(json.loads)
 
         session_list = dtp.get_session_list(annotation_data)
+        experiment_plots = 'plots/'+experiment_name
+        if not os.exists(experiment_plots):
+            try:
+                os.mkdir(path)
+            except OSError:
+                print("Creation of the directory %s failed" % path)
 
+
+        '''
         for session in session_list:
             #df_session = annotation_data.loc[annotation_data['sessionid']==session]
             if dtp.check_session_length(session):
@@ -28,6 +36,6 @@ def create_itemlist_per_experiment(path):
 
             #TODO check whether the reuquirements are fulfilled
             pass
-
+        '''
 
 
