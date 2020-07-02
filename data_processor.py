@@ -93,7 +93,9 @@ def get_data_with_condition(df, field, value):
     return data
 
 def get_data_per_emotion(df, emotion):
-    df_emotion = df.loc[df['axpected'].str.contains(emotion)]
+    df = df[df['url'].notna()]
+    df_emotion = df.loc[df['url'].str.contains(emotion)]
+
 
     return df_emotion
 
