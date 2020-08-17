@@ -10,7 +10,7 @@ import data_processor as dtp
 sns.set(color_codes=True)
 
 
-base_path = 'raw_data/final_data/'
+base_path = './normalized_data'
 
 #experiment_list = dtp.get_filelist_in_folder(base_path)
 
@@ -19,7 +19,7 @@ def create_plots_per_emotion(path):
 
     for f in annotaion_files:
         f_path = path + '/' + f
-        annotation_data = dtp.read_raw_data(f_path)
+        annotation_data = pd.read_csv(f_path)
         experiment_name = 'am' if annotation_data['experiment'].str.contains('(AM)').any() else 'de'
         #json_question = annotation_data['options'].apply(json.loads)
 
@@ -30,14 +30,15 @@ def create_plots_per_emotion(path):
         experiment_plots = 'plots/' + experiment_name
         if not os.path.exists(experiment_plots):
             try:
-                os.mkdir(experiment_plots)
+                os.makedirs(experiment_plots)
             except OSError:
                 print("Creation of the directory %s failed" % path)
 
-        for original_label in pitch_label_list:
+        for original_label in original_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, original_label)
-            ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
+            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
             #ax = sns.barplot(x="inputvalue", y="x", data=label_data, estimator=lambda x: len(x) / label_data.shape[0] * 100)
+            ax = sns.countplot(x="inputvalue", data=label_data, order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
             ax.set(xlabel="Label")
             plt.title(experiment_name + '_' + original_label)
@@ -45,8 +46,10 @@ def create_plots_per_emotion(path):
 
         for pitch_label in pitch_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, pitch_label)
-            ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
+            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
             #ax = sns.barplot(x="inputvalue", y="inputvalue", data=label_data,estimator=lambda x: len(x) / label_data.shape[0] * 100)
+            ax = sns.countplot(x="inputvalue", data=label_data,
+                               order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
             ax.set(xlabel="Label")
             plt.title(experiment_name + '_' + pitch_label)
@@ -54,8 +57,10 @@ def create_plots_per_emotion(path):
 
         for tempo_label in tempo_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, tempo_label)
-            ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
+            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
             #ax = sns.barplot(x="inputvalue", y="inputvalue", data=label_data,estimator=lambda x: len(x) / label_data.shape[0] * 100)
+            ax = sns.countplot(x="inputvalue", data=label_data,
+                               order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
             ax.set(xlabel="Label")
             plt.title(experiment_name + '_' + tempo_label)

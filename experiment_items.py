@@ -4,7 +4,7 @@ import pandas as pd
 import datetime
 import json
 
-path = './raw_data/final_data'
+path = './raw_data/final_data/'
 
 #some variables
 experiment_id_de = '2278116'

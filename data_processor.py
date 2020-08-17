@@ -24,7 +24,7 @@ def get_filelist_in_folder(path):
     file_list = []
     for root, dirs, files in os.walk(path):
         for file in files:
-            if file.endswith('.txt'):
+            if file.endswith('.txt') or file.endswith('.csv'):
                 file_list.append(file)
 
     return file_list
