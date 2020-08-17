@@ -25,7 +25,7 @@ def create_experiment_overview(df_experiment, language):
         session_data = df_experiment.loc[df_experiment['sessionid']==session]
         session_length = session_data.shape[0]
         if session_length == 151:
-            session_overview = pd.DataFrame(columns=['session', 'sex', 'age'])
+            session_overview = pd.DataFrame(columns=['session', 'sex', 'age', 'language', 'foreign_language', 'control_question' ])
             session_overview['session'] = session_data['sessionid'].unique()
             session_overview['sex'] = session_data['sex'].unique()
             session_overview['age'] = session_data['participantage'].unique()
