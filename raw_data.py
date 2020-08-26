@@ -4,14 +4,14 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 
-path_de = 'raw_data/2278116_2020-05-29_11-24-14.txt'
-path_am = 'raw_data/2287306_2020-05-29_11-24-48.txt'
+path_de = 'raw_data/final_data/2278116_2020-08-23_12-44-44.txt'
+path_am = 'raw_data/final_data/2287306_2020-08-23_12-45-28.txt'
 
 data_de = pd.read_csv(path_de, sep='\t')
-data_de.to_csv('wowoemotion_de.csv', sep=';')
+data_de.to_csv('wowoemotion_raw_de.csv', sep=';')
 
 data_am = pd.read_csv(path_am, sep='\t')
-data_am.to_csv('wowoemotion_am.csv', sep=';')
+data_am.to_csv('wowoemotion_raw_am.csv', sep=';')
 
 def create_experiment_overview(df_experiment, language):
     base_name = datetime.now().strftime("%Y%m%d-%H%M%S")

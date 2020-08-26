@@ -57,8 +57,19 @@ def check_session_length(df_session):
 
 
 def check_first_language(df_session, language):
+    '''
+    check for a valid first language according to the experiment language given as parameter
+    '''
 
-    if df_session['experiment'].str.lower().contains(language).any():
+    language_options = ''
+    first_language = df_session['firstlanguage'].str.lower().unique()
+    if language.lower().contains('de'):
+        language_options = ['deutsch', 'german']
+    else:
+        language_options = ['arm', 'armenian', 'հայ', 'հայերեն', 'հայոց']
+
+    #if df_session['experiment'].str.lower().contains(language).any():
+    if first_language.isin(language_options).any():
         return True
 
     return False
@@ -106,7 +117,18 @@ def check_control_question(df_session):
 
     #loc the row containing control question and check inputvalue
 
-    pass
+    if df_session.loc[df_session['url'].str.contains('applause'), 'inputvalue'] == 'Klatschen':
+         return True
+
+    return False
+
+def replace_armenian_labels(df):
+    df_mapping = pd.read_csv('inputvalues_mapping.csv', sep='\t')
+    label_mapping = dict(zip(df_mapping['inputvalues_am'], df_mapping['inputvalues_de']))
+    df['inputvalue'].replace(label_mapping, inplace = True)
+
+    return df
+
 
 
 def experiment_conditions_fulfilled(df_session, language):
@@ -119,5 +141,25 @@ def experiment_conditions_fulfilled(df_session, language):
     5  the answer for the control question is correct
     '''
 
-    pass
+    if check_session_length(df_session) and \
+            check_participant_age(df_session) and \
+            check_first_language(df_session, language) and \
+            check_foreign_languages(df_session) and \
+            check_control_question(df_session):
+            return True
 
+
+    return False
+
+
+def extract_inputvalues(raw_path):
+    annotaion_files = get_filelist_in_folder(raw_path)
+
+    for f in annotaion_files:
+        f_path = raw_path + f
+        annotation_data = pd.read_csv(f_path, sep='\t')
+        experiment_name = 'am' if annotation_data['experiment'].str.contains('(AM)').any() else 'de'
+        inputvalues = annotation_data['inputvalue'].unique().tolist()
+
+        df_inputvalues = pd.DataFrame(data={'inputvalues': inputvalues})
+        df_inputvalues.to_csv(f'inputvalues_{experiment_name}.csv', sep=',', index=False)
