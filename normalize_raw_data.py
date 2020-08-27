@@ -99,18 +99,18 @@ def normalize_raw_data(base_path):
             annotation_data = dtp.replace_armenian_labels(annotation_data)
             annotation_data.to_csv('wowoemotion_mapped_am.csv')
 
-        '''
 
-        df_normalized = pd.DataFrame()
+
+        df_normalized = pd.DataFrame(columns=annotation_data.columns)
         session_list = dtp.get_session_list(annotation_data)
         for session_id in session_list:
             df_session = dtp.get_session_data(annotation_data, session_id)
             if dtp.experiment_conditions_fulfilled(df_session, experiment_language):
-                pd.concat(df_normalized, df_session, ignore_index=True)
+                df_normalized = pd.concat([df_normalized, df_session], ignore_index=True)
 
 
-        df_normalized.to_csv(f'normalized_final_{experiment_language}.csv')
-        '''
+        df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv')
+
 
 #create_plots_per_emotion(base_path)
 

@@ -63,14 +63,15 @@ def check_first_language(df_session, language):
 
     language_options = ''
     first_language = df_session['firstlanguage'].str.lower().unique()
-    if language.lower().contains('de'):
+    if 'de' in language.lower():
         language_options = ['deutsch', 'german']
     else:
         language_options = ['arm', 'armenian', 'հայ', 'հայերեն', 'հայոց']
 
     #if df_session['experiment'].str.lower().contains(language).any():
-    if first_language.isin(language_options).any():
-        return True
+    for l in first_language:
+        if l.strip() in language_options:
+            return True
 
     return False
 
@@ -88,10 +89,10 @@ def check_foreign_languages(df_session):
     returns False if any of the foreign languages of the participant is invalid
     '''
     invalid_languages = ['deutsch', 'arm', 'armenian', 'հայ', 'հայերեն', 'հայոց']
-    foreign_languages = df_session['foreignlanguage'].unique()
+    foreign_languages = df_session['foreignlanguages'].unique()
 
     for invalid_language in invalid_languages:
-        if invalid_language.isin(foreign_languages):
+        if invalid_language in foreign_languages:
             return False
 
     return True
@@ -117,7 +118,8 @@ def check_control_question(df_session):
 
     #loc the row containing control question and check inputvalue
 
-    if df_session.loc[df_session['url'].str.contains('applause'), 'inputvalue'] == 'Klatschen':
+    control_question =  df_session.loc[df_session['url'].str.contains('applause', na=False)]
+    if control_question['inputvalue'].str.contains('Klatschen').any():
          return True
 
     return False
