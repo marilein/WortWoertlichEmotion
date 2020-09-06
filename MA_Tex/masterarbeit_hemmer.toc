@@ -1,0 +1,100 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Notizen}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Analysen emotionaler Prosodie, Beate Wendt, 2007}{1}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Einf\IeC {\"u}hrung}{2}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Stand der Forschung}{3}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Deutsch - Armenisch: eine sprachliche Gegen\IeC {\"u}berstellung}{3}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Interkulturelle Zusammenh\IeC {\"a}nge in der Emotionswahrnehmung}{3}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Sprachperzeption}{5}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Emotion in Sprache}{6}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Prosodie}{7}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Akustische Merkmale}{8}{section.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.1}Grundfrequenz}{9}{subsection.3.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.2}Sprachtempo}{9}{subsection.3.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.3}Intensit\IeC {\"a}t}{13}{subsection.3.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Interkulturelle Emotionswahrnehmung}{13}{section.3.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Diskussion}{13}{section.3.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Emotion und Sprache - das Experiment}{14}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Phonetik und Phonologie der armenischen Sprache}{14}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Motivation}{15}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Methodik}{15}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Auswahl der Merkmale}{16}{subsection.4.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Auswahl des Sprachkorpus}{16}{subsection.4.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Pseudow\IeC {\"o}rter}{17}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Stimuli}{18}{section.4.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.1}Wortauswahl}{18}{subsection.4.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.2}Werkzeuge: eigene und bestehende}{19}{subsection.4.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.3}Manipulation der Sprachsignale}{19}{subsection.4.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Manipulation der Grundfrequenz}{19}{section*.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Manipulation des Sprachtempos}{20}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.4}Experimentdesign}{20}{subsection.4.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.5}Percy - die Praesentation der Stimuli und Fragen fuer die Hoerer}{23}{subsection.4.5.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Fragen zur Pers\IeC {\"o}nlichkeit}{24}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Kontrollfrage}{24}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5.6}Probandenauswahl a posteriori}{24}{subsection.4.5.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Datenanalyse}{25}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Demographische Auswertung der Teilnehmerdaten}{25}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Vergleich der eigenen Daten mit der Evaluation des Magdeburger Sprachkorpus}{25}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Vergleich der Emotionswahrnehmung von armenischen und deutschen H\IeC {\"o}rern}{25}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.1}intrakulturelle Unterschiede, Persoenlichkeitsunterschied}{25}{subsection.5.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.2}Freude}{25}{subsection.5.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.3}Trauer}{25}{subsection.5.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.4}Neutral}{25}{subsection.5.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.5}Ekel}{25}{subsection.5.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.6}Angst}{25}{subsection.5.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.7}Wut}{25}{subsection.5.3.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Fazit}{33}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{34}{chapter*.37}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Appendix}{36}{chapter*.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Fragen zur Pers\IeC {\"o}nlichkeit}{36}{section.Alph0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}Das armenische Alphabet}{39}{section.Alph0.2}

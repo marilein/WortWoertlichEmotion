@@ -1,0 +1,23 @@
+[0] Config.pm:302> INFO - This is Biber 2.9
+[0] Config.pm:305> INFO - Logfile is 'masterarbeit_hemmer.blg'
+[22] biber:313> INFO - === Fr Jul 31, 2020, 17:07:25
+[43] Biber.pm:371> INFO - Reading 'masterarbeit_hemmer.bcf'
+[98] Biber.pm:857> INFO - Found 18 citekeys in bib section 0
+[108] Biber.pm:3981> INFO - Processing section 0
+[116] Biber.pm:4154> INFO - Looking for bibtex format file 'Masterarbeit.bib' for section 0
+[127] bibtex.pm:1468> INFO - LaTeX decoding ...
+[231] bibtex.pm:1294> INFO - Found BibTeX data source 'Masterarbeit.bib'
+[234] Utils.pm:169> WARN - Possible typo (case mismatch) between datasource keys: 'Parada-cabaleiro2017a' and 'Parada-Cabaleiro2017a' in file 'Masterarbeit.bib'
+[236] Utils.pm:169> WARN - Duplicate entry key: 'Sander2018' in file 'Masterarbeit.bib', skipping ...
+[271] Utils.pm:169> WARN - month field 'jan' in entry 'Wildgruber2006' is not an integer - this will probably not sort properly.
+[280] Utils.pm:169> WARN - month field 'apr' in entry 'VanLancker1973a' is not an integer - this will probably not sort properly.
+[308] Utils.pm:169> WARN - month field 'nov' in entry 'Jadoul2018a' is not an integer - this will probably not sort properly.
+[346] Utils.pm:169> WARN - BibTeX subsystem: /tmp/7OgI2xDl0L/Masterarbeit.bib_7104.utf8, line 6, warning: 172 characters of junk seen at toplevel
+[346] Utils.pm:169> WARN - I didn't find a database entry for ')' (section 0)
+[374] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[375] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[375] Biber.pm:3809> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[375] Biber.pm:3815> INFO - No sort tailoring available for locale 'de-DE'
+[405] bbl.pm:617> INFO - Writing 'masterarbeit_hemmer.bbl' with encoding 'UTF-8'
+[424] bbl.pm:720> INFO - Output to masterarbeit_hemmer.bbl
+[424] Biber.pm:110> INFO - WARNINGS: 7

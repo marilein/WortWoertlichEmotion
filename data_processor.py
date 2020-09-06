@@ -119,7 +119,10 @@ def check_control_question(df_session):
     #loc the row containing control question and check inputvalue
 
     control_question =  df_session.loc[df_session['url'].str.contains('applause', na=False)]
-    if control_question['inputvalue'].str.contains('Klatschen').any():
+    legal_inputvalue = df_session.loc[df_session['inputvalue']=='Klatschen']
+
+    if (legal_inputvalue.shape[0]==1 and
+        control_question['inputvalue'].str.contains('Klatschen').any()):
          return True
 
     return False
