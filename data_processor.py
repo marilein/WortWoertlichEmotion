@@ -134,6 +134,10 @@ def replace_armenian_labels(df):
 
     return df
 
+def get_experiment_language(df, ):
+     experiment_language = 'am' if df['experiment'].str.contains('(AM)').any() else 'de'
+
+     return experiment_language
 
 
 def experiment_conditions_fulfilled(df_session, language):

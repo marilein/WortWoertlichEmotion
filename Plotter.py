@@ -19,6 +19,14 @@ tempo_label_values = ['Angst_tempo', 'Ekel_tempo', 'Freude_tempo', 'neutral_temp
 tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
 
 
+def split_speaker_data(label_data):
+    # returns a list of dataframes, each of those contains annotations of one speaker recordings
+    label_data = label_data[label_data['url'].notna()]
+    m_data = label_data.loc[label_data["url"].str.contains("M_")]
+    f_data = label_data.loc[~label_data.index.isin(m_data.index)]
+
+    return [m_data, f_data]
+
 def create_countplots(path):
     annotaion_files = dtp.get_filelist_in_folder(path)
 
@@ -45,59 +53,67 @@ def create_countplots(path):
             except OSError:
                 print("Creation of the directory %s failed" % path)
 
+
         for original_label in original_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, original_label)
-            annot_count = label_data.shape[0]
-            # ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
-            #ax = sns.barplot(x="inputvalue", data=label_data, estimator=lambda x: len(x) / label_data.shape[0] * 100)
+            speaker_data_list = split_speaker_data(label_data)
+            for speaker_data in speaker_data_list:
+                annot_count = speaker_data.shape[0]
+                # ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
+                # ax = sns.barplot(x="inputvalue", data=label_data, estimator=lambda x: len(x) / label_data.shape[0] * 100)
+
+                ax = sns.countplot(x="inputvalue", data=speaker_data,
+                                   order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
+
+                ax.set(ylabel="Anzahl Annotationen")
+                ax.set(xlabel="Label")
+
+                # Make twin axis
+                ax2 = ax.twinx()
+
+                # Switch so count axis is on right, frequency on left
+                ax2.yaxis.tick_left()
+                ax.yaxis.tick_right()
+
+                # Also switch the labels over
+                ax.yaxis.set_label_position('right')
+                ax2.yaxis.set_label_position('left')
+
+                ax2.set_ylabel('Annotationen [%]')
+
+                for p in ax.patches:
+                    x = p.get_bbox().get_points()[:, 0]
+                    y = p.get_bbox().get_points()[1, 1]
+                    ax.annotate('{:.1f}%'.format(100. * y / annot_count), (x.mean(), y),
+                                ha='center', va='bottom')  # set the alignment of the text
+
+                # Use a LinearLocator to ensure the correct number of ticks
+                ax.yaxis.set_major_locator(ticker.LinearLocator(11))
+
+                # Fix the frequency range to 0-100
+                ax2.set_ylim(0, 100)
+                ax.set_ylim(0, annot_count)
+
+                # And use a MultipleLocator to ensure a tick spacing of 10
+                ax2.yaxis.set_major_locator(ticker.MultipleLocator(10))
+
+                # Need to turn the grid on ax2 off, otherwise the gridlines end up on top of the bars
+                ax2.grid(None)
+
+                speaker = "F_"
+
+                if speaker_data["url"].str.contains("M_").any():
+                    speaker = 'M_'
 
 
-
-            ax = sns.countplot(x="inputvalue", data=label_data,
-                               order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
-
-            ax.set(ylabel="Anzahl Annotationen")
-            ax.set(xlabel="Label")
-
-            # Make twin axis
-            ax2 = ax.twinx()
-
-            # Switch so count axis is on right, frequency on left
-            ax2.yaxis.tick_left()
-            ax.yaxis.tick_right()
-
-            # Also switch the labels over
-            ax.yaxis.set_label_position('right')
-            ax2.yaxis.set_label_position('left')
-
-            ax2.set_ylabel('Annotationen [%]')
-
-            for p in ax.patches:
-                x = p.get_bbox().get_points()[:, 0]
-                y = p.get_bbox().get_points()[1, 1]
-                ax.annotate('{:.1f}%'.format(100. * y / annot_count), (x.mean(), y),
-                            ha='center', va='bottom')  # set the alignment of the text
-
-            # Use a LinearLocator to ensure the correct number of ticks
-            ax.yaxis.set_major_locator(ticker.LinearLocator(11))
-
-            # Fix the frequency range to 0-100
-            ax2.set_ylim(0, 100)
-            ax.set_ylim(0, annot_count)
-
-            # And use a MultipleLocator to ensure a tick spacing of 10
-            ax2.yaxis.set_major_locator(ticker.MultipleLocator(10))
-
-            # Need to turn the grid on ax2 off, otherwise the gridlines end up on top of the bars
-            ax2.grid(None)
+                t = experiment_name + '_' + speaker + original_label_dict[original_label]
+                plt.title(t)
+                plt.savefig(f'{experiment_plots}/{t}.png')
+                plt.autoscale()
+                plt.show()
+                plt.clf()
 
 
-            t = experiment_name + '_' + original_label_dict[original_label]
-            plt.title(t)
-            plt.savefig(f'{experiment_plots}/{t}.png')
-            plt.autoscale()
-            plt.show()
-            plt.clf()
 
         for pitch_label in pitch_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, pitch_label)
@@ -152,6 +168,7 @@ def create_countplots(path):
 
         for tempo_label in tempo_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, tempo_label)
+
             # ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
             # ax = sns.barplot(x="inputvalue", y="inputvalue", data=label_data,estimator=lambda x: len(x) / label_data.shape[0] * 100)
             annot_count = label_data.shape[0]
@@ -255,6 +272,6 @@ def create_heatmap(path):
 base_folder = 'normalized_data/'
 
 
-#create_countplots(base_folder)
+create_countplots(base_folder)
 
-create_heatmap(base_folder)
+#create_heatmap(base_folder)
