@@ -261,7 +261,7 @@ def create_heatmap(path):
             confusion_matrix = pd.crosstab(df_group['expected'], df_group['inputvalue'],
                                        rownames=['Prosodischer Ausdruck'], colnames=['Annotation'],)
             sns.heatmap(confusion_matrix/np.sum(confusion_matrix), annot=True,
-            fmt='.2%', cmap = sns.light_palette("navy"))
+            fmt='.1%', cmap = sns.light_palette("navy"))
             plt.title(f'{g}_{experiment_name}')
             plt.savefig(f'plots/conf_{g}_{experiment_name}.png')
             plt.show()
@@ -272,6 +272,6 @@ def create_heatmap(path):
 base_folder = 'normalized_data/'
 
 
-create_countplots(base_folder)
+#create_countplots(base_folder)
 
-#create_heatmap(base_folder)
+create_heatmap(base_folder)
