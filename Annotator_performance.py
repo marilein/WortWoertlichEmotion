@@ -74,7 +74,7 @@ def compute_interrater_agreement(folder_path):
             # compute accuracy score and store as rater weight
             # the name of the average answer column was 'AverageAnswer' - now chaging it to the question itself as a column name
             df_rater_agreement.loc[df_rater_agreement[sessionid] == rater, experiment_name] =\
-                ("%.4f" % (accuracy_score(rater_annotations[inputvalue], average_annotations[experiment_name])))
+                ("%.2f" % (accuracy_score(rater_annotations[inputvalue], average_annotations[experiment_name])))
 
 
         df_rater_agreement.to_csv(f'rater_agreement_{experiment_name}')

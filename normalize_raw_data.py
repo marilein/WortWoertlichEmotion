@@ -1,5 +1,6 @@
 import IPython
 import os
+from re import search
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -90,17 +91,45 @@ def normalize_raw_data(base_path):
 
         df_normalized = pd.DataFrame(columns=annotation_data.columns)
         session_list = dtp.get_session_list(annotation_data)
+        inputvalue_klatschen = pd.DataFrame(columns=['sessionid', 'Klatschen', 'Eingaben'])
+        inputvalue_klatschen['sessionid'] = annotation_data['sessionid'].unique()
         for session_id in session_list:
             df_session = dtp.get_session_data(annotation_data, session_id)
+            legal_inputvalue = df_session.loc[df_session['inputvalue'] == 'Klatschen']
+            #inputvalue_klatschen['sessionid'] = session_id
+            inputvalue_klatschen.loc[inputvalue_klatschen['sessionid'] == session_id, 'Klatschen'] = legal_inputvalue.shape[0]
+            inputvalue_klatschen.loc[inputvalue_klatschen['sessionid'] == session_id, 'Eingaben'] = \
+            df_session.shape[0]
             if dtp.experiment_conditions_fulfilled(df_session, experiment_language):
                 df_normalized = pd.concat([df_normalized, df_session], ignore_index=True)
 
+        inputvalue_klatschen.to_csv(f'overview/participants/overview/inputvalue_Klatschen_{experiment_language}.csv', index=False)
+        df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv', index=False)
 
-        df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv')
 
+def create_participation_overview(participants_folder):
+    files = dtp.get_filelist_in_folder(participants_folder)
+
+    df_overview = pd.DataFrame(columns=['Experiment', 'Teilnahmen', 'Done', 'Bestanden'])
+    df_overview['Experiment'] = ['Deutsch', 'Armenisch']
+    for f in files:
+        f_path = participants_folder + f
+        experiment_overview = pd.read_csv(f_path)
+        experiment_language = 'Armenisch' if search('_am', f) else 'Deutsch'
+        df_overview.loc[df_overview['Experiment']==experiment_language, ['Teilnahmen', 'Done', 'Bestanden']] = \
+        [experiment_overview.shape[0], experiment_overview.loc[experiment_overview['Eingaben']==151].shape[0], 'add']
+
+    df_overview.to_csv('overview/participants/analysis/participation_overview.csv', index=False)
+
+
+
+
+participants_folder = 'overview/participants/overview/'
+create_participation_overview(participants_folder)
 
 #create_plots_per_emotion(base_path)
 
 
-normalize_raw_data(raw_path)
+#normalize_raw_data(raw_path)
+
 

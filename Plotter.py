@@ -257,14 +257,73 @@ def create_heatmap(path):
             label_keys = f'{g}_label_keys'
             df_group= df.loc[df['url'].str.contains('|'.join(eval(label_keys)))]
 
+            ft = lambda x, pos: '{:.0%}'.format(x)
 
             confusion_matrix = pd.crosstab(df_group['expected'], df_group['inputvalue'],
                                        rownames=['Prosodischer Ausdruck'], colnames=['Annotation'],)
-            sns.heatmap(confusion_matrix/np.sum(confusion_matrix), annot=True,
-            fmt='.1%', cmap = sns.light_palette("navy"))
+            sns.heatmap(confusion_matrix / np.sum(confusion_matrix), annot=True,
+                        fmt='0.1%', cmap = sns.light_palette("navy"), cbar_kws={'format': ticker.FuncFormatter(ft)})
+            #cbar_kws={'format': '%.0f%%', 'ticks': [0,100]}
             plt.title(f'{g}_{experiment_name}')
             plt.savefig(f'plots/conf_{g}_{experiment_name}.png')
             plt.show()
+
+
+
+def analyze_pitch():
+    f0_aggregation = pd.read_csv('f0_aggregation.csv')
+    f0_m = f0_aggregation.loc[f0_aggregation['Geschlecht']=='männlich']
+    f0_f = f0_aggregation.loc[f0_aggregation['Geschlecht'] == 'weiblich']
+    '''
+    sns.relplot(x="sound", y="f0_mean", hue="emotion", size="sex",
+                sizes=(40, 400), alpha=.5, palette="muted",
+                height=6, data=f0_aggregation)
+    plt.savefig('plots/f0/f0_mean.png')
+    '''
+    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion",col="Geschlecht",data=f0_aggregation)
+    g.set_ylabels('F0 (Hz)')
+    g.set_xlabels('Stimulus')
+    plt.xticks('')
+
+    g.fig.suptitle('F0-Durchschnittswerte der Originalsprachaufnahmen ')
+    plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
+    g.fig.tight_layout()
+    plt.subplots_adjust(top=0.9)
+    #plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
+    plt.savefig('plots/f0/f0_mean_two_in_one.png')
+
+    plt.clf()
+
+    g = sns.relplot(x="sound", y="f0_median", hue="Emotion", col="Geschlecht", data=f0_aggregation)
+    g.set_ylabels('F0 (Hz)')
+    g.set_xlabels('Stimulus')
+    plt.xticks('')
+
+    g.fig.suptitle('F0-Medianwerte der Originalsprachaufnahmen ')
+    plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
+    g.fig.tight_layout()
+    plt.subplots_adjust(top=0.9)
+    # plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
+    plt.savefig('plots/f0/f0_median_two_in_one.png')
+
+    plt.clf()
+
+    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted",
+                height=6, data=f0_m)
+    plt.ylabel('F0 (Hz)')
+    plt.xlabel ('Stimulus')
+    plt.xticks('')
+    plt.savefig('plots/f0/f0_mean_m.png')
+
+    plt.clf()
+
+    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted",
+                height=6, data=f0_f)
+    plt.ylabel('F0 (Hz)')
+    plt.xlabel('Stimulus')
+    plt.xticks('')
+    plt.savefig('plots/f0/f0_mean_f.png')
+    plt.clf()
 
 
 
@@ -274,4 +333,9 @@ base_folder = 'normalized_data/'
 
 #create_countplots(base_folder)
 
-create_heatmap(base_folder)
+#create_heatmap(base_folder)
+
+analyze_pitch()
+
+
+
