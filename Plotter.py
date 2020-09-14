@@ -274,15 +274,20 @@ def analyze_pitch():
     f0_aggregation = pd.read_csv('f0_aggregation.csv')
     f0_m = f0_aggregation.loc[f0_aggregation['Geschlecht']=='männlich']
     f0_f = f0_aggregation.loc[f0_aggregation['Geschlecht'] == 'weiblich']
+
+    f0_aggregation = f0_aggregation.sort_values(by=['Emotion', 'Geschlecht'])
     '''
     sns.relplot(x="sound", y="f0_mean", hue="emotion", size="sex",
                 sizes=(40, 400), alpha=.5, palette="muted",
                 height=6, data=f0_aggregation)
     plt.savefig('plots/f0/f0_mean.png')
     '''
-    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion",col="Geschlecht",data=f0_aggregation)
+    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion",col="Emotion",data=f0_aggregation, style='Geschlecht',
+                     size='Geschlecht', sizes=(100, 50),row_order=['Emotion'], col_wrap=3)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
+    #g.axes.set_xticks(range(1, len(f0_aggregation['Emotion'].unique()) + 1))
+    #g.set_xticklabels(f0_aggregation['Emotion'].unique(), step=6, rotation=30)
     plt.xticks('')
 
     g.fig.suptitle('F0-Durchschnittswerte der Originalsprachaufnahmen ')
@@ -290,7 +295,7 @@ def analyze_pitch():
     g.fig.tight_layout()
     plt.subplots_adjust(top=0.9)
     #plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
-    plt.savefig('plots/f0/f0_mean_two_in_one.png')
+    plt.savefig('plots/f0/f0_mean_per_emotion_sorted_sex.png')
 
     plt.clf()
 
