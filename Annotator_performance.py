@@ -39,7 +39,7 @@ def compute_interrater_agreement(folder_path):
 
         f_path = folder_path + f
         df = pd.read_csv(f_path)
-        df = df[~df[url].str.contains('applause')]
+        df = df[df[url].str.contains('applause')==False]
         experiment_name = 'am' if df['experiment'].str.contains('(AM)').any() else 'de'
 
         #create a dataframe for interrater agreement
@@ -48,7 +48,7 @@ def compute_interrater_agreement(folder_path):
         #fill the stimulus aggregation dataframe with unique audiofiles only once (for the first experiment)
         if first:
             df_aggregated[url] = df[url].dropna().unique()
-            df_aggregated = df_aggregated[~df_aggregated[url].str.contains('applause')]
+            df_aggregated = df_aggregated[df_aggregated[url].str.contains('applause')==False]
             first=False
 
         df_aggregated = answer_mode_per_task(df_aggregated, df, experiment_name)
@@ -57,14 +57,13 @@ def compute_interrater_agreement(folder_path):
         for rater in df[sessionid].unique():  # iterate over all raters
             # get answers of that rater
             rater_annotations = df.loc[df[sessionid] == rater, [url, inputvalue]]
-            rater_annotations = rater_annotations[url].dropna()
+            rater_annotations[url].dropna()
             # if there are any duplicates, remove all except the first one
-            rater_annotations = rater_annotations.drop_duplicates(subset=url, keep="first")
-
+            rater_annotations = rater_annotations.drop_duplicates(url,keep='first')
 
 
             # get the average answers for the files this rater has annotated
-            average_annotations = df_aggregated.loc[df_aggregated[url].isin(rater_annotations[url])]
+            average_annotations = df_aggregated.loc[df_aggregated[url].isin(rater_annotations[url])].dropna()
 
 
             # sort both DataFrames by filename to make sure correlation is computed for the right pairs

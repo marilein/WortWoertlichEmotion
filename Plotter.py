@@ -269,7 +269,6 @@ def create_heatmap(path):
             plt.show()
 
 
-
 def analyze_pitch():
     f0_aggregation = pd.read_csv('f0_aggregation.csv')
     f0_m = f0_aggregation.loc[f0_aggregation['Geschlecht']=='männlich']
@@ -299,6 +298,41 @@ def analyze_pitch():
 
     plt.clf()
 
+    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion", col="Geschlecht", data=f0_aggregation)
+    g.set_ylabels('F0 (Hz)')
+    g.set_xlabels('Stimulus')
+    emotion_list_long = ['Angst', '', '', '', 'Ekel', '', '', '', 'Freude', '', '', '', 'Trauer', '', '', '', 'Wut', '', '', '',
+              'neutral',  '', '', '']
+
+    emotion_list_short = ['Angst', 'Ekel', 'Freude',  'Trauer', 'Wut', 'neutral']
+
+    for ax in g.axes.flat:#
+        g.set(xticks=np.arange(2, 25, 4))
+        labels = ax.get_xticklabels()  # get x labels
+        #labels = emotion_list
+        for i, l in enumerate(labels):
+            labels[i] = emotion_list_short[i]
+           #if not (i % 4 == 0): labels[i] = ''
+        ax.set_xticklabels(labels)
+        
+
+
+
+    #plt.xticks(ticks=f0_aggregation['Emotion'].unique(), labels=f0_aggregation['Emotion'].unique())
+    #g.set_xticklabels(labels=['Angst','', '', '',  'Freude','', '', '', 'Ekel','', '', '', 'Wut','', '', '', 'Trauer','', '', '', 'neutral'], step=400)
+    #plt.xticks(f0_aggregation['Emotion'].unique())
+
+    g.fig.suptitle('F0-Meanwerte der Originalsprachaufnahmen ')
+    plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
+    g.fig.tight_layout()
+
+    plt.subplots_adjust(top=0.9)
+    # plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
+    plt.savefig('plots/f0/f0_mean_two_in_one_sorted.png')
+
+    plt.clf()
+
+
     g = sns.relplot(x="sound", y="f0_median", hue="Emotion", col="Geschlecht", data=f0_aggregation)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
@@ -309,12 +343,14 @@ def analyze_pitch():
     g.fig.tight_layout()
     plt.subplots_adjust(top=0.9)
     # plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
-    plt.savefig('plots/f0/f0_median_two_in_one.png')
+    plt.savefig('plots/f0/f0_median_two_in_one_sorted.png')
 
     plt.clf()
 
-    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted",
-                height=6, data=f0_m)
+
+    f0_m = f0_m.sort_values(by='Emotion')
+    f0_f = f0_f.sort_values(by='Emotion')
+    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted", data=f0_m)
     plt.ylabel('F0 (Hz)')
     plt.xlabel ('Stimulus')
     plt.xticks('')
@@ -322,8 +358,7 @@ def analyze_pitch():
 
     plt.clf()
 
-    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted",
-                height=6, data=f0_f)
+    sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted", data=f0_f)
     plt.ylabel('F0 (Hz)')
     plt.xlabel('Stimulus')
     plt.xticks('')
