@@ -3,6 +3,39 @@ import os
 from datetime import datetime
 import pandas as pd
 
+
+#stimuli groups original, f0- and tempo-manipulated: mapping sound files with emotion labels
+original_label_keys = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
+original_label_values = ['Angst', 'Ekel', 'Freude', 'neutral', 'Wut', 'Trauer']
+original_label_dict = dict(zip(original_label_keys, original_label_values))
+pitch_label_keys  = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
+pitch_label_values = ['Angst_F0', 'Ekel_F0', 'Freude_F0', 'neutral_F0', 'Wut_F0', 'Trauer_F0']
+pitch_label_dict = dict(zip(pitch_label_keys, pitch_label_values))
+tempo_label_keys  = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
+tempo_label_values = ['Angst_tempo', 'Ekel_tempo', 'Freude_tempo', 'neutral_tempo', 'Wut_tempo', 'Trauer_tempo']
+tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
+all_labels_dict = {**original_label_dict, **pitch_label_dict, **tempo_label_dict}
+
+
+
+
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
+
+
+
+
+
 def get_datetime_str(dt):
     '''
     returns datetime in a standard format
@@ -107,8 +140,6 @@ def get_data_with_condition(df, field, value):
 def get_data_per_emotion(df, emotion):
     df = df[df['url'].notna()]
     df_emotion = df.loc[df['url'].str.contains(emotion)]
-
-
     return df_emotion
 
 def check_control_question(df_session):
@@ -134,7 +165,7 @@ def replace_armenian_labels(df):
 
     return df
 
-def get_experiment_language(df, ):
+def get_experiment_language(df ):
      experiment_language = 'am' if df['experiment'].str.contains('(AM)').any() else 'de'
 
      return experiment_language
@@ -160,6 +191,12 @@ def experiment_conditions_fulfilled(df_session, language):
 
     return False
 
+def fill_in_intended_emotions(df):
+    pat = r'({})'.format('|'.join(all_labels_dict.keys()))
+    extracted = df['url'].str.extract(pat, expand=False).dropna()
+    df['expected'] = extracted.apply(lambda x: all_labels_dict[x]).reindex(df.index).fillna(0)
+    return df
+
 
 def extract_inputvalues(raw_path):
     annotaion_files = get_filelist_in_folder(raw_path)
@@ -172,3 +209,14 @@ def extract_inputvalues(raw_path):
 
         df_inputvalues = pd.DataFrame(data={'inputvalues': inputvalues})
         df_inputvalues.to_csv(f'inputvalues_{experiment_name}.csv', sep=',', index=False)
+
+
+def get_stimuli_annotations(df_annotations_all):
+
+    df_stimuli_annotations = df_annotations_all[df_annotations_all['url'].notna()]
+
+    df_emotion_annotations = df_stimuli_annotations.loc[~df_stimuli_annotations["url"].str.contains("applause")]
+
+    return df_emotion_annotations
+
+

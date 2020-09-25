@@ -261,6 +261,7 @@ def create_heatmap(path):
 
             confusion_matrix = pd.crosstab(df_group['expected'], df_group['inputvalue'],
                                        rownames=['Prosodischer Ausdruck'], colnames=['Annotation'],)
+            confusion_matrix.to_csv(f'confusion_matrices/conf_matrix_{experiment_name}_{g}.csv')
             sns.heatmap(confusion_matrix / np.sum(confusion_matrix), annot=True,
                         fmt='0.1%', cmap = sns.light_palette("navy"), cbar_kws={'format': ticker.FuncFormatter(ft)})
             #cbar_kws={'format': '%.0f%%', 'ticks': [0,100]}
@@ -373,9 +374,9 @@ base_folder = 'normalized_data/'
 
 #create_countplots(base_folder)
 
-#create_heatmap(base_folder)
+create_heatmap(base_folder)
 
-analyze_pitch()
+#analyze_pitch()
 
 
 

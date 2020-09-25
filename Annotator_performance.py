@@ -3,7 +3,9 @@ import os
 import argparse
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
+import seaborn as sns
 
 import data_processor as dtp
 import random
@@ -85,4 +87,40 @@ def compute_interrater_agreement(folder_path):
 
 
 base_folder = 'normalized_data/'
-compute_interrater_agreement(base_folder)
+#compute_interrater_agreement(base_folder)
+
+def plot_rater_agreement():
+    rater_agreement_am = 'rater_agreement_am.csv'
+    rater_agreement_de = 'rater_agreement_de.csv'
+    df_am  = pd.read_csv(rater_agreement_am)
+    df_de = pd.read_csv(rater_agreement_de)
+
+    #plot ewe values for armenian participants
+    a = sns.regplot(x='Rater', y='EWE', data = df_am, fit_reg=False)
+    plt.xlabel('Teilnehmer')
+    plt.ylabel('r')
+    plt.ylim(0, 1)
+    plt.title('Interrater-Reliabilität der armenischen Teilnehmer')
+    plt.setp(a.get_xticklabels(), rotation=45)
+    plt.tight_layout()
+
+
+    plt.show()
+    plt.savefig('ewe_am.png')
+
+    plt.close()
+
+    #plot ewe values for german participants
+    d = sns.regplot(x='Rater', y='EWE', data = df_de, fit_reg=False)
+    plt.xlabel('Teilnehmer' )
+    plt.ylabel('r')
+    plt.ylim(0, 1)
+    plt.title('Interrater-Reliabilität der deutschen Teilnehmer')
+    plt.setp(d.get_xticklabels(), rotation=45)
+    plt.tight_layout()
+    plt.show()
+    plt.savefig('ewe_de.png')
+
+    plt.close()
+
+plot_rater_agreement()

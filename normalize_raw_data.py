@@ -103,6 +103,15 @@ def normalize_raw_data(base_path):
             if dtp.experiment_conditions_fulfilled(df_session, experiment_language):
                 df_normalized = pd.concat([df_normalized, df_session], ignore_index=True)
 
+        #following block has been moved to data_processor module
+        '''
+        pat = r'({})'.format('|'.join(dtp.all_labels_dict.keys()))
+        extracted = df_normalized['url'].str.extract(pat, expand=False).dropna()
+
+        df_normalized['expected'] = extracted.apply(lambda x: dtp.all_labels_dict[x].split('_')[0]).reindex(df_normalized.index).fillna(0)
+        '''
+        df_normalized = dtp.fill_in_intended_emotions(df_normalized)
+
         inputvalue_klatschen.to_csv(f'overview/participants/overview/inputvalue_Klatschen_{experiment_language}.csv', index=False)
         df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv', index=False)
 
@@ -121,15 +130,33 @@ def create_participation_overview(participants_folder):
 
     df_overview.to_csv('overview/participants/analysis/participation_overview.csv', index=False)
 
+def merge_experiments_data(data_folder):
+    annotation_files = dtp.get_filelist_in_folder(data_folder)
+    df_all = pd.DataFrame()
+
+    for annotation_file in annotation_files:
+        f_path = data_folder + annotation_file
+        df_data = pd.read_csv(f_path)
+        df_all = pd.concat([df_all, df_data], ignore_index=True)
+
+    df_filtered = dtp.get_stimuli_annotations(df_all)
+
+    df_filtered.to_csv('analyze/normalized_emotion_annotations_all.csv')
+
+
+
+
 
 
 
 participants_folder = 'overview/participants/overview/'
-create_participation_overview(participants_folder)
+#create_participation_overview(participants_folder)
 
 #create_plots_per_emotion(base_path)
 
 
-#normalize_raw_data(raw_path)
+normalize_raw_data(raw_path)
+
+#merge_experiments_data('normalized_data/')
 
 

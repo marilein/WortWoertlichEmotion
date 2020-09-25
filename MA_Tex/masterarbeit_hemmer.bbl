@@ -19,6 +19,61 @@
 
 \refsection{0}
   \datalist[entry]{apa/global//global/global}
+    \entry{Ackermann2004}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=6410cdf76c75711d897b5f65660e64e9}{%
+           family={Ackermann},
+           familyi={A\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d346f550591b07080e530f283576480c}{%
+           family={Hertrich},
+           familyi={H\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=be44333e1c95f053bb976a01d16b5b84}{%
+           family={Crodd},
+           familyi={C\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=7d16f7a322b8883a9823d1649ecca79d}{%
+           family={Wildgruber},
+           familyi={W\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0b5d72a326e19c2a120f75e319eccc2d}
+      \strng{fullhash}{f80cbf7bdf59ae3c3ea888fac35de219}
+      \strng{bibnamehash}{f80cbf7bdf59ae3c3ea888fac35de219}
+      \strng{authorbibnamehash}{f80cbf7bdf59ae3c3ea888fac35de219}
+      \strng{authornamehash}{0b5d72a326e19c2a120f75e319eccc2d}
+      \strng{authorfullhash}{f80cbf7bdf59ae3c3ea888fac35de219}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Besides a sequence of words, spoken utterances are characterized by prosodic (suprasegmental) qualities such as a distinct into-nation contour ("speech melody"), loudness variations, and a rhythmic structure. In addition to a variety of linguistic and pragmatic functions, these features may reflect a speaker's mood and, thus, contribute, concomitant with facial and gestural movements, to the nonverbal expression of emotions (affective prosody). Clinical studies yielded discrepant data on the cerebral correlates of the processing of affective prosody. Functional imaging provides a more recent approach to the analysis of brain-behaviour relationships. The available investigations indicate two successive stages of the perceptual encoding of affective prosody: (a) predominant right-hemisphere processing of intonation contours within posterior parts of the superior temporal gyrus, (b) evaluation of the conveyed emotion at the level of bilateral orbitofrontal cortex. These findings corroborate and extend the model of a more proficient analysis and short-term storage of tonal information within the right cerebral hemisphere.}
+      \field{issn}{03024350}
+      \field{journaltitle}{Aktuelle Neurologie}
+      \field{number}{9}
+      \field{title}{{"Das h{ö}ren von gef{ü}hlen": Funktionell-neuro-anatomische grundlagen der verarbeitung affektiver prosodie}}
+      \field{volume}{31}
+      \field{year}{2004}
+      \field{pages}{449\bibrangedash 460}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1055/s-2004-828377
+      \endverb
+      \verb{file}
+      \verb :home/mhemmer/Downloads/MA-related/Literatur/emotion and prosody/Ackermann{\_}Akt{\_}Neurol{\_}31{\_}446{\_}2004.pdf:pdf
+      \endverb
+    \endentry
     \entry{Ackermann2014c}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,uniquepart=base,hash=f576c55a716947b7a108470909963a9c}{%
@@ -50,7 +105,6 @@
       \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{In this response to commentaries, we revisit the two main arguments of our target article. Based on data drawn from a variety of research areas - vocal behavior in nonhuman primates, speech physiology and pathology, neurobiology of basal ganglia functions, motor skill learning, paleoanthropological concepts - the target article, first, suggests a two-stage model of the evolution of the crucial motor prerequisites of spoken language within the hominin lineage: (1) monosynaptic refinement of the projections of motor cortex to brainstem nuclei steering laryngeal muscles, and (2) subsequent vocal-laryngeal elaboration of cortico-basal ganglia circuits, driven by human-specific FOXP2 mutations. Second, as concerns the ontogenetic development of verbal communication, age-dependent interactions between the basal ganglia and their cortical targets are assumed to contribute to the time course of the acquisition of articulate speech. Whereas such a phylogenetic reorganization of cortico-striatal circuits must be considered a necessary prerequisite for ontogenetic speech acquisition, the 30 commentaries - addressing the whole range of data sources referred to - point at several further aspects of acoustic communication which have to be added to or integrated with the presented model. For example, the relationships between vocal tract movement sequencing - the focus of the target article - and rhythmical structures of movement organization, the connections between speech motor control and the central-auditory and central-visual systems, the impact of social factors upon the development of vocal behavior (in nonhuman primates and in our species), and the interactions of ontogenetic speech acquisition - based upon FOXP2-driven structural changes at the level of the basal ganglia - with preceding subvocal stages of acoustic communication as well as higher-order (cognitive) dimensions of phonological development. Most importantly, thus, several promising future research directions unfold from these contributions - accessible to clinical studies and functional imaging in our species as well as experimental investigations in nonhuman primates.}
@@ -104,6 +158,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Professional actors' portrayals of 14 emotions varying in intensity and valence were presented to judges. The results on decoding replicate earlier findings on the ability of judges to infer vocally expressed emotions with much-better-than-chance accuracy, including consistently found differences in the recognizability of different emotions. A total of 224 portrayals were subjected to digital acoustic analysis to obtain profiles of vocal parameters for different emotions. The data suggest that vocal parameters not only index the degree of intensity typical for different emotions but also differentiate valence or quality aspects. The data are also used to test theoretical predictions on vocal patterning based on the component process model of emotion (K. R. Scherer, 1986). Although most hypotheses are supported, some need to be revised on the basis of the empirical evidence. Discriminant analysis and jackknifing show remarkably high hit rates and patterns of confusion that closely mirror those found for listener-judges.}
+      \field{annotation}{* vocal emotional profiles for each emotion * naturalness of acted emotions * accuracy of prediction of emotions}
       \field{issn}{00223514}
       \field{journaltitle}{Journal of Personality and Social Psychology}
       \field{number}{3}
@@ -187,6 +242,47 @@
       \endverb
       \verb{url}
       \verb http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.148.6152%7B%5C&%7Drep=rep1%7B%5C&%7Dtype=pdf
+      \endverb
+    \endentry
+    \entry{Charpentier1989}{misc}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=d2eb03f9881e6ad067020d271e2de281}{%
+           family={Charpentier},
+           familyi={C\bibinitperiod},
+           given={Francis},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=9a27cfd06e24e248dcf090e4f986e98d}{%
+           family={Mouunes},
+           familyi={M\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \strng{fullhash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \strng{bibnamehash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \strng{authorbibnamehash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \strng{authornamehash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \strng{authorfullhash}{5ab6ddcc6dfdbc3add49e340fa8f8e3d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We review in a common framework several algorithms that have been proposed recently, in order to improve the voice quality of speech synthesis using diphones [1-3]. These algorithms are based on a pitch-synchronous overlap-add (PSOLA) approach for modifying the speech prosody and concatenating diphone waveforms. The modifications of the speech signal are performed either in the frequencydomain (FD-PSOLA), using the Fast Fourier Transform, or directly in the time domain (TD-P SOLA), depending on the length of the window used in the synthesis process. The frequency domain approach is capable or a great flexibility in modifying the spectral characteristics of the speech signal, while the time domain approach provides very efficient solutions for the real time implementation of synthesis systems. We also discuss the different kinds of distortions involved in thesedifferent algorithms.}
+      \field{title}{{PITCH-SYNCHRONOUS WA VEFORM PROCESSING TECHNIQUES FOR TEXT-TO-SPEECH SYNTHESIS USING DIPHONES}}
+      \field{year}{1989}
+      \verb{file}
+      \verb :home/mhemmer/Downloads/MA-related/Literatur/Tools/charpenter{\_}PSOLA.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.iscaaspeech.org/archiveEUROSPEECH'89,
+      \endverb
+      \verb{url}
+      \verb http://www.iscaaspeech.org/archiveEUROSPEECH'89,
       \endverb
     \endentry
     \entry{Chronaki2018}{article}{}
@@ -368,6 +464,57 @@
       \endverb
       \keyw{Acoustics,Data analysis,Phonetics,Praat,Python,Software}
     \endentry
+    \entry{Lieberman1962}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=3ba0829197e5e188a15044c0288d0797}{%
+           family={Lieberman},
+           familyi={L\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=65fcdf682b213c5c94523e646b45df37}{%
+           family={Michaels},
+           familyi={M\bibinitperiod},
+           given={Sheldon\bibnamedelima B.},
+           giveni={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Acoustical Society of America (ASA)}%
+      }
+      \strng{namehash}{36aeab0b3ac53261c3ef2287dde62959}
+      \strng{fullhash}{36aeab0b3ac53261c3ef2287dde62959}
+      \strng{bibnamehash}{36aeab0b3ac53261c3ef2287dde62959}
+      \strng{authorbibnamehash}{36aeab0b3ac53261c3ef2287dde62959}
+      \strng{authornamehash}{36aeab0b3ac53261c3ef2287dde62959}
+      \strng{authorfullhash}{36aeab0b3ac53261c3ef2287dde62959}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Pitch pulses were electronically derived from the utterances an objective statement, a fearful utterance, a happy utterance, etc. A fixed-vowel POVO-type synthesizer was excited by these pitch pulses. rate, could be smoothed original speech English who each read eight neutral test sentences The pitch perturbations, envelope Tapes were recorded in certain "emotional" modes, i.e., as a question, or rapid variations in the fundamental excitation out and the POVO could be amplitude-modulated amplitude. sented, correct identification was made 44{\%} of the time. When amplitude information was added to the pitch information, modes in forced judgment tests. Results of the tests show that with unpmcessed able to correctly stant reduced the identifications 120-cps monotone in 14{\%} identifications}
+      \field{issn}{0001-4966}
+      \field{journaltitle}{The Journal of the Acoustical Society of America}
+      \field{month}{7}
+      \field{number}{7}
+      \field{title}{{Some Aspects of Fundamental Frequency and Envelope Amplitude as Related to the Emotional Content of Speech}}
+      \field{volume}{34}
+      \field{year}{1962}
+      \field{pages}{922\bibrangedash 927}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1121/1.1918222
+      \endverb
+      \verb{urlraw}
+      \verb http://asa.scitation.org/doi/10.1121/1.1918222
+      \endverb
+      \verb{url}
+      \verb http://asa.scitation.org/doi/10.1121/1.1918222
+      \endverb
+    \endentry
     \entry{Matsumoto}{article}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=b585129e169f2ae07067549ce5bf57aa}{%
@@ -396,6 +543,34 @@
       \verb{file}
       \verb :home/mhemmer/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Matsumoto - Unknown - Psychology Journal of Cross-Cultural Cultural Influences on the Perception of Emotion On behalf of International A.pdf:pdf
       \endverb
+    \endentry
+    \entry{neuber2002prosodische}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=1befc197bd67f611366ec1f028864220}{%
+           family={Neuber},
+           familyi={N\bibinitperiod},
+           given={Baldur},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Lang}%
+      }
+      \strng{namehash}{1befc197bd67f611366ec1f028864220}
+      \strng{fullhash}{1befc197bd67f611366ec1f028864220}
+      \strng{bibnamehash}{1befc197bd67f611366ec1f028864220}
+      \strng{authorbibnamehash}{1befc197bd67f611366ec1f028864220}
+      \strng{authornamehash}{1befc197bd67f611366ec1f028864220}
+      \strng{authorfullhash}{1befc197bd67f611366ec1f028864220}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Prosodische Formen in Funktion: Leistungen der Suprasegmentalia f{ü}r das Verstehen, Behalten und die Bedeutungs (re) konstruktion}
+      \field{year}{2002}
     \endentry
     \entry{Nevo2001}{article}{}
       \name{author}{3}{}{%
@@ -726,6 +901,98 @@
       \verb :home/mhemmer/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Van Lancker, Fromkin - 1973 - Hemispheric specialization for pitch and “tone” Evidence from Thai.pdf:pdf
       \endverb
     \endentry
+    \entry{Wendt2007}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=e1953ee9c3aa53ffc9230df11c7609c0}{%
+           family={Wendt},
+           familyi={W\bibinitperiod},
+           given={Beate},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Frankfurt am Main}%
+      }
+      \list{publisher}{1}{%
+        {P. Lang}%
+      }
+      \strng{namehash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \strng{fullhash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \strng{bibnamehash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \strng{authorbibnamehash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \strng{authornamehash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \strng{authorfullhash}{e1953ee9c3aa53ffc9230df11c7609c0}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9783631563816}
+      \field{title}{{Analysen emotionaler Prosodie}}
+      \field{year}{2007}
+    \endentry
+    \entry{Wendt2006}{article}{}
+      \name{author}{5}{}{%
+        {{uniquename=0,uniquepart=base,hash=e1953ee9c3aa53ffc9230df11c7609c0}{%
+           family={Wendt},
+           familyi={W\bibinitperiod},
+           given={Beate},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=85f6323c044ecff8801e9bf01cff471a}{%
+           family={Brechmann},
+           familyi={B\bibinitperiod},
+           given={Andr{é}},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=9dfb90b5d1850aad67ae5213249f4b2f}{%
+           family={Gaschler-Markefski},
+           familyi={G\bibinithyphendelim M\bibinitperiod},
+           given={Birgit},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=83cf6bb86c987d00ea8367061e51de61}{%
+           family={Scheich},
+           familyi={S\bibinitperiod},
+           given={Henning},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=f576c55a716947b7a108470909963a9c}{%
+           family={Ackermann},
+           familyi={A\bibinitperiod},
+           given={Hermann},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3f10cb670484b0a36cd46a2b94ab8bb0}
+      \strng{fullhash}{2507dda1527e9e3e02183d22e8bc0eeb}
+      \strng{bibnamehash}{2507dda1527e9e3e02183d22e8bc0eeb}
+      \strng{authorbibnamehash}{2507dda1527e9e3e02183d22e8bc0eeb}
+      \strng{authornamehash}{3f10cb670484b0a36cd46a2b94ab8bb0}
+      \strng{authorfullhash}{2507dda1527e9e3e02183d22e8bc0eeb}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The aim of the present fMRI-study was to investigate the influence of different word prosodies on the activation of the auditory cortex (AC) of 24 subjects. Pseudowords and semantically neutral words were presented with neutral prosody in experiment I and with emotional prosodies in experiment II. We applied two lexical tasks i.e. detecting words or pseudowords. The control task was to detect pure tones. In both studies there was a typical left lateralized activation for speech perception on planum temporale (T3). This territory as part of Wernicke's area is specifically involved in speech perception. A right lateralization simply dependent on prosodic versus neutral content of speech stimuli, as suggested by some literature, is not supported by the current results. In our experiments the emotional information was task-irrelevant and even distracted from the lexical task. Namely, the performance in the detection of words and pseudowords was significantly better in the prosodically neutral condition. Thus, the current results contribute to the clarification of the controversial issue whether prosodies lateralize brain activation to the right, i.e. if lexical rather than prosodic information is in the focus of a task involving prosodic material, a right hemisphere dominance cannot be expected.}
+      \field{journaltitle}{Proceedings of the 3rd International Conference on Speech Prosody (SP2006)}
+      \field{title}{{Lateralized processing in human auditory cortex during the perception of emotional prosody}}
+      \field{year}{2006}
+      \field{pages}{2\bibrangedash 5}
+      \range{pages}{4}
+      \verb{file}
+      \verb :home/mhemmer/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Wendt et al. - Unknown - Lateralized processing in human auditory cortex during the perception of emotional prosody.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.isca-speech.org/archive
+      \endverb
+      \verb{url}
+      \verb http://www.isca-speech.org/archive
+      \endverb
+    \endentry
     \entry{Wendt2003}{article}{}
       \name{author}{7}{}{%
         {{uniquename=0,uniquepart=base,hash=e1953ee9c3aa53ffc9230df11c7609c0}{%
@@ -889,8 +1156,73 @@
       \endverb
       \keyw{affect,communication,emotion,fMRI,intonation,language,lateralization,prosody}
     \endentry
+    \entry{Ye2020}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,uniquepart=base,hash=f479a5bc4643d82a2d3d0fade3e8e0fd}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Yongchao},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=fb67f3e4575f5065b3df180b0e2749be}{%
+           family={Lao},
+           familyi={L\bibinitperiod},
+           given={Lingjie},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=854e6e7df580f86273c7ea1f2e0848a6}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Diqun},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=f355ea6c678f3fc0f23b02984a9fd48f}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Rangding},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Hindawi Limited}%
+      }
+      \strng{namehash}{6f062e1d6f0b02dc927976ef5d2b2183}
+      \strng{fullhash}{0588b2f06a4de1bedc08b90428517f9e}
+      \strng{bibnamehash}{0588b2f06a4de1bedc08b90428517f9e}
+      \strng{authorbibnamehash}{0588b2f06a4de1bedc08b90428517f9e}
+      \strng{authornamehash}{6f062e1d6f0b02dc927976ef5d2b2183}
+      \strng{authorfullhash}{0588b2f06a4de1bedc08b90428517f9e}
+      \field{sortinit}{Y}
+      \field{sortinithash}{6ae2ff5458ff901249c2745238c951b7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Pitch shifting is a common voice editing technique in which the original pitch of a digital voice is raised or lowered. It is likely to be abused by the malicious attacker to conceal his/her true identity. Existing forensic detection methods are no longer effective for weakly pitch-shifted voice. In this paper, we proposed a convolutional neural network (CNN) to detect not only strongly pitch-shifted voice but also weakly pitch-shifted voice of which the shifting factor is less than ±4 semitones. Specifically, linear frequency cepstral coefficients (LFCC) computed from power spectrums are considered and their dynamic coefficients are extracted as the discriminative features. And the CNN model is carefully designed with particular attention to the input feature map, the activation function and the network topology. We evaluated the algorithm on voices from two datasets with three pitch shifting software. Extensive results show that the algorithm achieves high detection rates for both binary and multiple classifications.}
+      \field{issn}{16877586}
+      \field{journaltitle}{International Journal of Digital Multimedia Broadcasting}
+      \field{title}{{Identification of Weakly Pitch-Shifted Voice Based on Convolutional Neural Network}}
+      \field{volume}{2020}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1155/2020/8927031
+      \endverb
+      \verb{file}
+      \verb :home/mhemmer/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Ye et al. - 2020 - Identification of Weakly Pitch-Shifted Voice Based on Convolutional Neural Network.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/338423791{\_}Identification{\_}of{\_}Weakly{\_}Pitch-Shifted{\_}Voice{\_}Based{\_}on{\_}Convolutional{\_}Neural{\_}Network
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/338423791%7B%5C_%7DIdentification%7B%5C_%7Dof%7B%5C_%7DWeakly%7B%5C_%7DPitch-Shifted%7B%5C_%7DVoice%7B%5C_%7DBased%7B%5C_%7Don%7B%5C_%7DConvolutional%7B%5C_%7DNeural%7B%5C_%7DNetwork
+      \endverb
+    \endentry
   \enddatalist
   \missing{)}
+  \missing{ekman1973cross}
+  \missing{hofstede2001culture}
+  \missing{matsumoto1989american}
 \endrefsection
 \endinput
 
