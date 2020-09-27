@@ -1,3 +1,13 @@
 Subset,Angst,Ekel,Freude,neutral,Wut,Trauer
 Ekel_tempo,4,36,12,10,35,7
+Freude,1,1,36,51,10,5
+neutral,1,4,2,81,14,2
+Angst,62,4,1,10,1,26
+Freude_tempo,0,4,25,64,9,2
 Ekel,3,54,10,3,23,11
+Wut,0,7,4,4,87,2
+Wut_tempo,0,5,1,4,94,0
+Angst_tempo,60,5,5,10,6,18
+Trauer,14,6,2,20,6,56
+neutral_tempo,0,1,5,79,18,1
+Trauer_tempo,17,4,3,35,5,40

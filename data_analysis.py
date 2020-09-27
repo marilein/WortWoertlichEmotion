@@ -269,16 +269,18 @@ def compute_manipulation_contingency(df):
     subsets = ['pitch', 'tempo']
     groups = ['Armenisch', 'Deutsch']
     #fill 'expected' column with intended emotion labels
+
     df = dtp.fill_in_intended_emotions(df)
     df_results = pd.DataFrame(columns = ['Variables', 'xsq', 'pvalue', 'dof'])
+    df_fischers = pd.DataFrame(columns=['Variables', 'oddsratio', 'pvalue'])
     for group in groups:
-        language = 'DE' if group==group[1] else 'AM'
+        language = 'DE' if group==groups[1] else 'AM'
         df_group = df.loc[df['experiment'].str.contains(language)]
-        for label_value in dtp.original_label_values:
-            label_data = df_group[df_group['expected'].str.contains(label_value)]
-            for subset in subsets:
+        #for label_value in dtp.original_label_values:
+           # label_data = df_group[df_group['expected'].str.contains(label_value)]
+        for subset in subsets:
                 subset_values = dtp.original_label_values + getattr(dtp, f'{subset}_label_values')
-                df_subset = label_data[label_data['expected'].isin(subset_values)]
+                df_subset = df_group[df_group['expected'].isin(subset_values)]
                 # create observation df
                 all_columns = ['Subset'] + dtp.original_label_values
                 df_obs = pd.DataFrame(columns=all_columns)
@@ -288,25 +290,62 @@ def compute_manipulation_contingency(df):
                     df_obs = count_answers_original_and_subset(df_obs, df_subset_label, subset_label)
                     #df_cross = pd.crosstab(df_subset_label['expected'], df_subset_label['inputvalue'])
 
-                df_obs.to_csv(f'analyze/{group}_{subset}_{label_value}_counts.csv', index=False)
-                obs_list = df_obs[dtp.original_label_values].to_numpy().tolist()
+                df_obs.to_csv(f'analyze/{group}_{subset}_counts.csv', index=False)
 
-                if label_value == 'Wut' and subset == 'tempo' :
-                    print('skip')
-                else:
-                    xsq, pvalue, dof, expected = chi2_contingency(obs_list, correction=True)
-                    test_case = f'{group}_{subset}_{label_value}'
-                    df_results_temp = pd.DataFrame(columns=['Variables', 'xsq', 'pvalue', 'dof'])
-                    df_results_temp['Variables'] = [test_case]
-                    df_results_temp['xsq'] = xsq
-                    df_results_temp.loc[df_results_temp['Variables'] == test_case,'pvalue'] = pvalue
-                    df_results_temp.loc[df_results_temp['Variables'] == test_case, 'dof'] =  dof
-                    df_results = pd.concat([df_results, df_results_temp], ignore_index=True)
+                #run chi2 for each emotion between original and manipulated
+                for emotion in dtp.original_label_values:
+                    df_obs_emotion = df_obs[df_obs['Subset'].str.contains(emotion)]
+                    obs_list = df_obs_emotion[dtp.original_label_values].to_numpy().tolist()
+                    '''
+                    if emotion == 'Wut':
+                        df_obs_emotion = df_obs_emotion.drop('Angst', axis=1)
+                        print(stats.contingency.expected_freq(obs_list))
+                        # obs_list = df_obs_emotion[original_label_values].to_numpy().tolist()
+                    '''
+                    expected = stats.contingency.expected_freq(obs_list)
+                    if not 0 in expected:
+                        xsq, pvalue, dof, expected = chi2_contingency(obs_list, correction=True)
+                        test_case = f'{group}_{subset}_{emotion}'
+                        df_results_temp = pd.DataFrame(columns=['Variables', 'xsq', 'pvalue', 'dof'])
+                        df_results_temp['Variables'] = [test_case]
+                        df_results_temp['xsq'] = xsq
+                        df_results_temp.loc[df_results_temp['Variables'] == test_case, 'pvalue'] = pvalue
+                        df_results_temp.loc[df_results_temp['Variables'] == test_case, 'dof'] = dof
+                        df_results = pd.concat([df_results, df_results_temp], ignore_index=True)
 
-                    print(
-                        f'{group} {subset} {label_value}: xsq: {xsq}, pvalue: {pvalue}, dof: {dof}, expected: {expected}')
-                     #df_for_chi = get_label_data_for_chi2(df_label)
+                        print(
+                            f'{group} {subset} {emotion}: xsq: {xsq}, pvalue: {pvalue}, dof: {dof}, expected: {expected}')
+                        # df_for_chi = get_label_data_for_chi2(df_label)
+                    else:
+                        obs_fischer = pd.DataFrame(columns=['Subset', 'right', 'wrong'])
+                        obs_fischer['Subset'] = df_obs_emotion['Subset'].unique()
+                        columns = []
+                        columns.extend([x for x in dtp.original_label_values if x != emotion])
+
+                        for sub in  df_obs_emotion['Subset'].unique():
+
+                            obs_fischer.loc[obs_fischer['Subset'] == sub, 'right'] = df_obs_emotion.loc[df_obs_emotion['Subset']==sub, emotion].iloc[0]
+                            print(dtp.original_label_values)
+                            df_temp = df_obs_emotion[df_obs_emotion['Subset']==sub]
+                            wrong = df_temp[columns].values.sum()
+                            obs_fischer.loc[obs_fischer['Subset'] == sub, 'wrong'] = wrong
+
+                        obs_fischer_list = obs_fischer[['right', 'wrong']].to_numpy().tolist()
+                        oddsratio, pvalue = stats.fisher_exact(obs_fischer_list)
+                        test_case = f'{group}_{subset}_{emotion}'
+                        df_fischers_temp = pd.DataFrame(columns=df_fischers.columns)
+                        df_fischers_temp['Variables'] = [test_case]
+                        df_fischers_temp.loc[df_fischers_temp['Variables'] == test_case,'oddsratio'] = oddsratio
+                        df_fischers_temp.loc[df_fischers_temp['Variables'] == test_case,'pvalue'] = pvalue
+                        df_fischers = pd.concat([df_fischers, df_fischers_temp], ignore_index=True)
+
+                        print('Fischer : ', oddsratio, pvalue)
+
+
+
+
     df_results.to_csv('results/chi2_results_manipulation.csv', index=False)
+    df_fischers.to_csv('results/fischers_results_manipulation.csv', index = False)
 
 
 
@@ -318,7 +357,7 @@ def compute_manipulation_contingency(df):
 
 df = pd.read_csv('analyze/normalized_emotion_annotations_all.csv')
 
-compute_culture_contingency(df)
+#compute_culture_contingency(df)
 compute_manipulation_contingency(df)
 #test_f_oneway()
 
