@@ -111,7 +111,8 @@ def normalize_raw_data(base_path):
         df_normalized['expected'] = extracted.apply(lambda x: dtp.all_labels_dict[x].split('_')[0]).reindex(df_normalized.index).fillna(0)
         '''
         df_normalized = dtp.fill_in_intended_emotions(df_normalized)
-
+        df_naturaleness = df_normalized.loc[df_normalized['itemid'].isin([2278419, 2287438])]
+        df_naturaleness['inputvalue'].to_csv(f'naturalness_{experiment_language}.csv', index=False)
         inputvalue_klatschen.to_csv(f'overview/participants/overview/inputvalue_Klatschen_{experiment_language}.csv', index=False)
         df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv', index=False)
 
