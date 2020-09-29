@@ -1,0 +1,13 @@
+Subset,Angst,Ekel,Freude,neutral,Wut,Trauer
+Freude,1,1,36,51,10,5
+neutral,1,4,2,81,14,2
+Angst_F0,61,12,1,6,2,22
+Wut_F0,1,20,5,3,74,1
+Freude_F0,8,7,54,14,13,8
+Ekel_F0,9,47,9,7,24,8
+Angst,62,4,1,10,1,26
+Ekel,3,54,10,3,23,11
+Wut,0,7,4,4,87,2
+Trauer_F0,22,6,3,15,6,52
+neutral_F0,6,4,11,51,13,19
+Trauer,14,6,2,20,6,56

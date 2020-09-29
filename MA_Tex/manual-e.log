@@ -1,0 +1,178 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.16)  13 JUN 2020 22:46
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**manual-e.tex
+(./manual-e.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/mflogo/mflogo.sty
+Package: mflogo 1999/03/10 v2.0 LaTeX package for Metafont and MetaPost logos
+)
+(/usr/share/texlive/texmf-dist/tex/latex/armenian/armtex.sty
+Package: armtex 2014/04/09 v3.0-beta3 armtex.sty (LaTeX package for writing in 
+Armenian)
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/armenian/ot6enc.def
+File: ot6enc.def 2014/04/09 v3.0-beta3 ot6enc.def (OT6 encoding definition file
+)
+
+(/usr/share/texlive/texmf-dist/tex/latex/armenian/ot6cmr.fd
+File: ot6cmr.fd 2014/04/09 v3.0-beta3 ot6cmr.fd (OT6/cmr font definition file)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/armenian/ot6cmss.fd
+File: ot6cmss.fd 2014/04/09 v3.0-beta3 ot6cmss.fd (OT6/cmss font definition fil
+e)
+)
+\armabr@boxa=\box26
+\armabr@boxb=\box27
+)
+LaTeX Font Info:    Overwriting math alphabet `\mathartm' in version `bold'
+(Font)                  OT6/cmr/m/n --> OT6/cmr/bx/n on input line 425.
+LaTeX Font Info:    Overwriting math alphabet `\mathartmit' in version `bold'
+(Font)                  OT6/cmr/m/it --> OT6/cmr/bx/it on input line 428.
+LaTeX Info: Redefining \rm on input line 496.
+LaTeX Info: Redefining \sf on input line 497.
+LaTeX Info: Redefining \tt on input line 498.
+LaTeX Info: Redefining \bf on input line 499.
+LaTeX Info: Redefining \it on input line 500.
+LaTeX Info: Redefining \sl on input line 501.
+LaTeX Info: Redefining \sc on input line 502.
+\armnumeralcount=\count87
+\armnu@cta=\count88
+\armnu@ctb=\count89
+\armnu@ctc=\count90
+) (./manual-e.aux)
+\openout1 = `manual-e.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT6/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Info: Redefining \* on input line 64.
+LaTeX Info: Redefining \! on input line 64.
+LaTeX Info: Redefining \| on input line 64.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 68.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 68.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 68.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 68.
+LaTeX Font Info:    Try loading font information for U+logo on input line 87.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mflogo/ulogo.fd
+File: ulogo.fd 1999/03/10 v2.0 LaTeX font defs for Metafont and MetaPost logos
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8
+] [9] [10] [11]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 586.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 587.
+
+[12] [13] [14] (./manual-e.aux) ) 
+Here is how much of TeX's memory you used:
+ 1235 strings out of 492982
+ 16764 string characters out of 6134896
+ 77823 words of memory out of 5000000
+ 4814 multiletter control sequences out of 15000+600000
+ 14325 words of font info for 48 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,12n,22p,221b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/armenian/arssr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/arme
+nian/artmb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/armenian/art
+mr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/hoekwater/mflogo-font/logo10.p
+fb>
+Output written on manual-e.pdf (14 pages, 270147 bytes).
+PDF statistics:
+ 135 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

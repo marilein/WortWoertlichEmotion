@@ -1,0 +1,27 @@
+[0] Config.pm:302> INFO - This is Biber 2.9
+[0] Config.pm:305> INFO - Logfile is 'masterarbeit_hemmer.blg'
+[18] biber:313> INFO - === Do Sep 24, 2020, 02:02:57
+[34] Biber.pm:371> INFO - Reading 'masterarbeit_hemmer.bcf'
+[82] Biber.pm:857> INFO - Found 28 citekeys in bib section 0
+[92] Biber.pm:3981> INFO - Processing section 0
+[99] Biber.pm:4154> INFO - Looking for bibtex format file 'Masterarbeit.bib' for section 0
+[109] bibtex.pm:1468> INFO - LaTeX decoding ...
+[214] bibtex.pm:1294> INFO - Found BibTeX data source 'Masterarbeit.bib'
+[217] Utils.pm:169> WARN - Duplicate entry key: 'Sander2018' in file 'Masterarbeit.bib', skipping ...
+[220] Utils.pm:169> WARN - Possible typo (case mismatch) between datasource keys: 'Parada-Cabaleiro2017a' and 'Parada-cabaleiro2017a' in file 'Masterarbeit.bib'
+[295] Utils.pm:169> WARN - month field 'jan' in entry 'Wildgruber2006' is not an integer - this will probably not sort properly.
+[304] Utils.pm:169> WARN - month field 'apr' in entry 'VanLancker1973a' is not an integer - this will probably not sort properly.
+[327] Utils.pm:169> WARN - month field 'jul' in entry 'Lieberman1962' is not an integer - this will probably not sort properly.
+[342] Utils.pm:169> WARN - month field 'nov' in entry 'Jadoul2018a' is not an integer - this will probably not sort properly.
+[352] Utils.pm:169> WARN - BibTeX subsystem: /tmp/FzovnkY5rj/Masterarbeit.bib_7676.utf8, line 6, warning: 172 characters of junk seen at toplevel
+[352] Utils.pm:169> WARN - I didn't find a database entry for 'hofstede2001culture' (section 0)
+[352] Utils.pm:169> WARN - I didn't find a database entry for 'ekman1973cross' (section 0)
+[352] Utils.pm:169> WARN - I didn't find a database entry for 'matsumoto1989american' (section 0)
+[352] Utils.pm:169> WARN - I didn't find a database entry for ')' (section 0)
+[388] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[388] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[388] Biber.pm:3809> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[388] Biber.pm:3815> INFO - No sort tailoring available for locale 'de-DE'
+[414] bbl.pm:617> INFO - Writing 'masterarbeit_hemmer.bbl' with encoding 'UTF-8'
+[437] bbl.pm:720> INFO - Output to masterarbeit_hemmer.bbl
+[438] Biber.pm:110> INFO - WARNINGS: 11
