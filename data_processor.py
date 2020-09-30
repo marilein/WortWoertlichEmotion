@@ -1,10 +1,21 @@
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
 import json
 import os
 from datetime import datetime
 import pandas as pd
 
 
-#stimuli groups original, f0- and tempo-manipulated: mapping sound files with emotion labels
+#stimuli classes Original, Pitch and Tempo: mapping emotion abbreviations in file names with emotion labels
 original_label_keys = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
 original_label_values = ['Angst', 'Ekel', 'Freude', 'neutral', 'Wut', 'Trauer']
 original_label_dict = dict(zip(original_label_keys, original_label_values))
@@ -15,8 +26,6 @@ tempo_label_keys  = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_t
 tempo_label_values = ['Angst_tempo', 'Ekel_tempo', 'Freude_tempo', 'neutral_tempo', 'Wut_tempo', 'Trauer_tempo']
 tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
 all_labels_dict = {**original_label_dict, **pitch_label_dict, **tempo_label_dict}
-
-
 
 
 class color:
@@ -33,16 +42,11 @@ class color:
 
 
 
-
-
-
 def get_datetime_str(dt):
     '''
     returns datetime in a standard format
     if datetime argument is not given, then return datetime now
     '''
-
-
     if dt:
         datetime_string = dt.strftime("%Y%m%d-%H%M%S")
     else:
@@ -59,7 +63,6 @@ def get_filelist_in_folder(path):
         for file in files:
             if file.endswith('.txt') or file.endswith('.csv'):
                 file_list.append(file)
-
     return file_list
 
 
@@ -85,7 +88,6 @@ def check_session_length(df_session):
 
     if len(df_session) == 151:
         return True
-
     return False
 
 
@@ -93,19 +95,17 @@ def check_first_language(df_session, language):
     '''
     check for a valid first language according to the experiment language given as parameter
     '''
-
-    language_options = ''
+    language_options = []
     first_language = df_session['firstlanguage'].str.lower().unique()
     if 'de' in language.lower():
-        language_options = ['deutsch', 'german']
+        language_options.extend(['deutsch', 'german'])
     else:
-        language_options = ['arm', 'armenian', 'հայ', 'հայերեն', 'հայոց']
+        language_options.extend(['arm', 'armenian', 'հայ', 'հայերեն', 'հայոց'])
 
     #if df_session['experiment'].str.lower().contains(language).any():
     for l in first_language:
         if l.strip() in language_options:
             return True
-
     return False
 
 
@@ -114,8 +114,8 @@ def check_participant_age (df_session):
     participant_age = df_session['participantage'].unique()
     if  int(participant_age) < 90 and int(participant_age) > 10:
         return True
-
     return False
+
 
 def check_foreign_languages(df_session):
     '''
@@ -127,14 +127,12 @@ def check_foreign_languages(df_session):
     for invalid_language in invalid_languages:
         if invalid_language in foreign_languages:
             return False
-
     return True
 
 
 def get_data_with_condition(df, field, value):
 
     data = df.loc[df[field]==value]
-
     return data
 
 def get_data_per_emotion(df, emotion):
@@ -146,28 +144,25 @@ def check_control_question(df_session):
     '''
     control question was to choose 'applause' instead of an emotion, when they hear clappig hands instead of human speech
     '''
-
     #loc the row containing control question and check inputvalue
-
     control_question =  df_session.loc[df_session['url'].str.contains('applause', na=False)]
     legal_inputvalue = df_session.loc[df_session['inputvalue']=='Klatschen']
 
     if (legal_inputvalue.shape[0]==1 and
         control_question['inputvalue'].str.contains('Klatschen').any()):
          return True
-
     return False
+
 
 def replace_armenian_labels(df):
     df_mapping = pd.read_csv('inputvalues_mapping.csv', sep='\t')
     label_mapping = dict(zip(df_mapping['inputvalues_am'], df_mapping['inputvalues_de']))
     df['inputvalue'].replace(label_mapping, inplace = True)
-
     return df
+
 
 def get_experiment_language(df ):
      experiment_language = 'am' if df['experiment'].str.contains('(AM)').any() else 'de'
-
      return experiment_language
 
 
@@ -188,8 +183,8 @@ def experiment_conditions_fulfilled(df_session, language):
             check_control_question(df_session):
             return True
 
-
     return False
+
 
 def fill_in_intended_emotions(df):
     pat = r'({})'.format('|'.join(all_labels_dict.keys()))
@@ -200,7 +195,6 @@ def fill_in_intended_emotions(df):
 
 def extract_inputvalues(raw_path):
     annotaion_files = get_filelist_in_folder(raw_path)
-
     for f in annotaion_files:
         f_path = raw_path + f
         annotation_data = pd.read_csv(f_path, sep='\t')
@@ -214,9 +208,7 @@ def extract_inputvalues(raw_path):
 def get_stimuli_annotations(df_annotations_all):
 
     df_stimuli_annotations = df_annotations_all[df_annotations_all['url'].notna()]
-
     df_emotion_annotations = df_stimuli_annotations.loc[~df_stimuli_annotations["url"].str.contains("applause")]
-
     return df_emotion_annotations
 
 
