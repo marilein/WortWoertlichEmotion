@@ -10,8 +10,10 @@ Wort wörtlich Emotion ist ein Perzeptionsexperiment, das als Web-Experiment mit
 
 ### Skripte
 
-normalize_raw_data.py : Die Normalisierung der Rohdaten wird von diesem Skript übernommen. Die Annotationen der Teilnehmer werden analysiert, geprüft und unter "normalized_data" gespechert
-data_analysis.py : Datenanalyse und Statistiken (Chi-Quadtrat-Test, Fischer's Test...)
+* normalize_raw_data.py :
+  Die Normalisierung der Rohdaten wird von diesem Skript übernommen. Die Annotationen der Teilnehmer werden analysiert, geprüft und unter "normalized_data"   gespechert
+* data_analysis.py :
+Datenanalyse und Statistiken (Chi-Quadtrat-Test, Fischer's Test...)
 data_processor.py : Allgeimeine Funktionen die für die Datenvorbereitung soweie Datenverarbeitung von unterschiedlichen Skripten in diesem Projekt benutzt werden.
 experiment_items.py : Das Skript extrahiert die eundeutigen IDs für die Eingabe-Items für jedes Experiment.
 experiment_overview.py : Hier werden Metadaten als Überblick zusammengefasst. Außerdem werden Aggregationstabellen erstellt.
