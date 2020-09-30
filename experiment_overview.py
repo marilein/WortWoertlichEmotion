@@ -1,20 +1,20 @@
-import os
-from datetime import datetime
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
 
 import numpy as np
 import pandas as pd
+from datetime import datetime
 import data_processor as dtp
 
-'''
-path_de = 'raw_data/final_data/2278116_2020-08-23_12-44-44.txt'
-path_am = 'raw_data/final_data/2287306_2020-08-23_12-45-28.txt'
-
-data_de = pd.read_csv(path_de, sep='\t')
-data_de.to_csv('wowoemotion_raw_de.csv', sep=';')
-
-data_am = pd.read_csv(path_am, sep='\t')
-data_am.to_csv('wowoemotion_raw_am.csv', sep=';')
-'''
 
 def create_experiment_overview(df_experiment, language):
     base_name = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -34,15 +34,9 @@ def create_experiment_overview(df_experiment, language):
             session_overview['age'] = session_data['participantage'].unique()
             session_overview['language'] = session_data['firstlanguage'].unique()
             session_overview['foreign_language'] = session_data['foreignlanguages'].unique()
-            #itemis for the control question: armenian = 2287589, german = 2286153
-            #control_q =  session_data.loc[(session_data['itemid']==2287589) | (session_data['itemid']==2286153)]
-            #session_overview['control_question'] = control_q['inputvalue'].values[0] if control_q['inputvalue'].any() else 'Nothing'
             overview = pd.concat([overview, session_overview])
         else:
             print('Not complete session  wa found in normalized data: check for bugs!')
-
-
-
 
     overview.to_csv('overview/'+base_name + 'overview_' + language + '.csv', sep=';')
 
@@ -76,9 +70,6 @@ def participants_overview():
     df_participants.to_csv('participants_overview.csv')
 
 
-
-
-
 def experiment_overview_for_folder():
 
     base_folder = 'normalized_data/'
@@ -90,7 +81,8 @@ def experiment_overview_for_folder():
         create_experiment_overview(annotation_data, experiment_language)
 
 
+if __name__=="__main__":
 
-#experiment_overview_for_folder()
+    experiment_overview_for_folder()
+    participants_overview()
 
-participants_overview()
