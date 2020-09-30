@@ -1,5 +1,16 @@
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
+
 from re import search
-from scipy import stats
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -10,41 +21,6 @@ from sklearn.preprocessing import LabelEncoder
 import scipy.stats as stats
 from scipy.stats import chi2_contingency
 
-
-def idk():
-    normalized_path = './normalized_data/'
-    files = dtp.get_filelist_in_folder(normalized_path)
-    for f in files:
-        f_path = normalized_path + f
-        experiment_data = pd.read_csv(f_path)
-        experiment_data = experiment_data[['inputvalue', 'url']]
-        experiment_language = 'Armenisch' if search('_am', f) else 'Deutsch'
-        print(experiment_language, '\n', experiment_data.describe())
-
-        for pitch_label in dtp.pitch_label_keys:
-            label_data = dtp.get_data_per_emotion(experiment_data, pitch_label)
-            sns.distplot(label_data['inputvalue'])
-            plt.title(f'{experiment_language}_{pitch_label}')
-            plt.show()
-
-        enc = LabelEncoder()
-        experiment_data['inputvalue'] = enc.fit_transform(experiment_data['inputvalue'])
-        # experiment_data['url'] = enc.fit_transform(experiment_data['url'])
-
-        sns.distplot(experiment_data['inputvalue'], kde=False)  # fit=stats.norm,
-        # plt.title(f'{experiment_language}_distribution')
-        # plt.show()
-
-        # k2, p = stats.normaltest(experiment_data)
-        # print(f'{experiment_language}: k2 ist {k2} un p-Wert ist {p}')
-        res = chi2(experiment_data.iloc[:, :1], experiment_data['inputvalue'])
-        features = pd.DataFrame({
-            'features': experiment_data.columns[:1],
-            'chi2': res[0],
-            'p-value': res[1]
-        })
-
-        print(features.head())
 
 def calculate_percentage_of_right_answers():
     normalized_path = './normalized_data/'
@@ -134,7 +110,6 @@ def calculate_percentage_of_all_answers():
 
             for pred_label in dtp.original_label_values:
                 pred_label_count = df.loc[df['Prosodischer Ausdruck']==true_label, pred_label]
-                print(pred_label_count)
                 ratio = 100 * pred_label_count/annot_count
                 df_conf_percent.loc[df_conf_percent['Emotion']== true_label, pred_label] = "%.1f" % ratio
 
@@ -142,69 +117,19 @@ def calculate_percentage_of_all_answers():
 
     df_conf_percent_all.to_csv('confusion_matrices_percentage_all.csv', index=False)
 
-    print(df_conf_percent_all.describe())
 
 
 def calculate_anotation_percentage():
     calculate_percentage_of_right_answers()
-
     calculate_percentage_of_all_answers()
 
-def test_f_oneway():
-    f_path = 'right_answers_percentage_all.csv'
-    df = pd.read_csv(f_path)
-
-
-
-    res_o = stats.f_oneway(df['Original [%]'][df['Language'] == 'Deutsch'],
-                   df['Original [%]'][df['Language'] == 'Armenisch'])
-
-    print(res_o)
-
-    res_f0 = stats.f_oneway(df['F0 [%]'][df['Language'] == 'Deutsch'],
-                        df['F0 [%]'][df['Language'] == 'Armenisch'])
-
-    print(res_f0)
-
-    res_tempo = stats.f_oneway(df['Tempo [%]'][df['Language'] == 'Deutsch'],
-                            df['Tempo [%]'][df['Language'] == 'Armenisch'])
-
-    print(res_tempo)
-
-    res_f0_de = stats.f_oneway(df['Original [%]'][df['Language'] == 'Deutsch'],
-                               df['F0 [%]'][df['Language'] == 'Deutsch'])
-
-    print(res_f0_de)
-
-    res_tempo_de = stats.f_oneway(df['Original [%]'][df['Language'] == 'Deutsch'],
-                               df['Tempo [%]'][df['Language'] == 'Deutsch'])
-
-    print(res_tempo_de)
-
-    res_f0_am = stats.f_oneway(df['Original [%]'][df['Language'] == 'Armenisch'],
-                               df['F0 [%]'][df['Language'] == 'Armenisch'])
-
-    print(res_f0_am)
-
-    res_tempo_am = stats.f_oneway(df['Original [%]'][df['Language'] == 'Armenisch'],
-                               df['Tempo [%]'][df['Language'] == 'Armenisch'])
-
-    print(res_tempo_am)
-
-
-def compute_ch2_for_subset(df):
-    pass
-
-
-
-def compute_chi2_for_emotion(df, emotion):
-    pass
 
 def count_answers_for_experiment(df_obs, df_label):
     language = 'Armenisch' if df_label['experiment'].str.contains('(AM)').any() else 'Deutsch'
     for emotion in dtp.original_label_values:
         df_obs.loc[df_obs['Language']==language, emotion] = df_label.loc[df_label['inputvalue']==emotion].shape[0]
     return df_obs
+
 
 def get_label_data_for_chi2(df_label):
     df_chi_obs = pd.DataFrame(columns=['Language', 'Emotion'])
@@ -222,7 +147,6 @@ def compute_culture_contingency(df):
     df_results = pd.DataFrame(columns=['Variables', 'xsq', 'pvalue', 'dof'])
     for subset in subsets:
         label_keys = f'dtp.{subset}_label_keys'
-        print(label_keys)
         df_subset = df.loc[df['url'].str.contains('|'.join(eval(label_keys)))]
         for label_key in getattr(dtp, f'{subset}_label_keys'):
             label_dict = getattr(dtp, f'{subset}_label_dict')
@@ -232,7 +156,6 @@ def compute_culture_contingency(df):
             all_columns = ['Language'] + dtp.original_label_values
             df_obs = pd.DataFrame(columns=all_columns)
             df_obs['Language'] = groups
-
 
             for experiment in df_label['experiment'].unique():
                 df_experiment = df_label.loc[df_label['experiment'] == experiment]
@@ -249,13 +172,13 @@ def compute_culture_contingency(df):
             df_results_temp.loc[df_results_temp['Variables'] == test_case, 'pvalue'] = pvalue
             df_results_temp.loc[df_results_temp['Variables'] == test_case, 'dof'] = dof
             df_results = pd.concat([df_results, df_results_temp], ignore_index=True)
-            print(f'{subset} {label_value}: xsq: {xsq}, pvalue: {pvalue}, dof: {dof}, expected: {expected}')
-            df_for_chi.to_csv(f'analyze/{subset}_{label_value}_for_chi.csv', index=False)
 
-            annot_count = df_label.shape[0]
-            label_count = df_label.loc[df_label['inputvalue'] == label_value].shape[0]
+            #print(f'{subset} {label_value}: xsq: {xsq}, pvalue: {pvalue}, dof: {dof}, expected: {expected}')
+            df_for_chi.to_csv(f'analyze/{subset}_{label_value}_for_chi.csv', index=False)
             df_label.to_csv(f'analyze/{subset}_{label_value}.csv', index=False)
+
     df_results.to_csv('results/chi2_results_between_cultures.csv', index=False)
+
 
 def count_answers_original_and_subset(df_obs, df_subset, subset):
 
@@ -264,20 +187,18 @@ def count_answers_original_and_subset(df_obs, df_subset, subset):
     return df_obs
 
 
-
 def compute_manipulation_contingency(df):
     subsets = ['pitch', 'tempo']
     groups = ['Armenisch', 'Deutsch']
-    #fill 'expected' column with intended emotion labels
 
+    # fill 'expected' column with intended emotion labels
     df = dtp.fill_in_intended_emotions(df)
     df_results = pd.DataFrame(columns = ['Variables', 'xsq', 'pvalue', 'dof'])
     df_fischers = pd.DataFrame(columns=['Variables', 'oddsratio', 'pvalue'])
     for group in groups:
         language = 'DE' if group==groups[1] else 'AM'
         df_group = df.loc[df['experiment'].str.contains(language)]
-        #for label_value in dtp.original_label_values:
-           # label_data = df_group[df_group['expected'].str.contains(label_value)]
+
         for subset in subsets:
                 subset_values = dtp.original_label_values + getattr(dtp, f'{subset}_label_values')
                 df_subset = df_group[df_group['expected'].isin(subset_values)]
@@ -285,10 +206,10 @@ def compute_manipulation_contingency(df):
                 all_columns = ['Subset'] + dtp.original_label_values
                 df_obs = pd.DataFrame(columns=all_columns)
                 df_obs['Subset'] = df_subset['expected'].unique()
+
                 for subset_label in df_subset['expected'].unique():
                     df_subset_label = df_subset.loc[df_subset['expected']==subset_label]
                     df_obs = count_answers_original_and_subset(df_obs, df_subset_label, subset_label)
-                    #df_cross = pd.crosstab(df_subset_label['expected'], df_subset_label['inputvalue'])
 
                 df_obs.to_csv(f'analyze/{group}_{subset}_counts.csv', index=False)
 
@@ -296,12 +217,7 @@ def compute_manipulation_contingency(df):
                 for emotion in dtp.original_label_values:
                     df_obs_emotion = df_obs[df_obs['Subset'].str.contains(emotion)]
                     obs_list = df_obs_emotion[dtp.original_label_values].to_numpy().tolist()
-                    '''
-                    if emotion == 'Wut':
-                        df_obs_emotion = df_obs_emotion.drop('Angst', axis=1)
-                        print(stats.contingency.expected_freq(obs_list))
-                        # obs_list = df_obs_emotion[original_label_values].to_numpy().tolist()
-                    '''
+
                     expected = stats.contingency.expected_freq(obs_list)
                     if not 0 in expected:
                         xsq, pvalue, dof, expected = chi2_contingency(obs_list, correction=True)
@@ -312,10 +228,11 @@ def compute_manipulation_contingency(df):
                         df_results_temp.loc[df_results_temp['Variables'] == test_case, 'pvalue'] = pvalue
                         df_results_temp.loc[df_results_temp['Variables'] == test_case, 'dof'] = dof
                         df_results = pd.concat([df_results, df_results_temp], ignore_index=True)
-
+                        '''     
                         print(
                             f'{group} {subset} {emotion}: xsq: {xsq}, pvalue: {pvalue}, dof: {dof}, expected: {expected}')
-                        # df_for_chi = get_label_data_for_chi2(df_label)
+                        '''
+
                     else:
                         obs_fischer = pd.DataFrame(columns=['Subset', 'right', 'wrong'])
                         obs_fischer['Subset'] = df_obs_emotion['Subset'].unique()
@@ -323,9 +240,7 @@ def compute_manipulation_contingency(df):
                         columns.extend([x for x in dtp.original_label_values if x != emotion])
 
                         for sub in  df_obs_emotion['Subset'].unique():
-
                             obs_fischer.loc[obs_fischer['Subset'] == sub, 'right'] = df_obs_emotion.loc[df_obs_emotion['Subset']==sub, emotion].iloc[0]
-                            print(dtp.original_label_values)
                             df_temp = df_obs_emotion[df_obs_emotion['Subset']==sub]
                             wrong = df_temp[columns].values.sum()
                             obs_fischer.loc[obs_fischer['Subset'] == sub, 'wrong'] = wrong
@@ -339,25 +254,13 @@ def compute_manipulation_contingency(df):
                         df_fischers_temp.loc[df_fischers_temp['Variables'] == test_case,'pvalue'] = pvalue
                         df_fischers = pd.concat([df_fischers, df_fischers_temp], ignore_index=True)
 
-                        print('Fischer : ', oddsratio, pvalue)
-
-
-
-
     df_results.to_csv('results/chi2_results_manipulation.csv', index=False)
     df_fischers.to_csv('results/fischers_results_manipulation.csv', index = False)
 
 
+if __name__=="__main__":
+    df = pd.read_csv('analyze/normalized_emotion_annotations_all.csv')
+    compute_culture_contingency(df)
+    compute_manipulation_contingency(df)
 
-
-
-
-
-
-
-df = pd.read_csv('analyze/normalized_emotion_annotations_all.csv')
-
-#compute_culture_contingency(df)
-compute_manipulation_contingency(df)
-#test_f_oneway()
 
