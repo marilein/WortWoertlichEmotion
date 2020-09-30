@@ -1,14 +1,17 @@
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
 import os
-import numpy as np
 import pandas as pd
-import datetime
 import json
-
-path = './raw_data/final_data/'
-
-#some variables
-experiment_id_de = '2278116'
-experiment_id_am = '2287306'
 
 def get_annotation_files(path):
     experiment_list = []
@@ -50,10 +53,11 @@ def big_five_mapping(language):
 
 
 
-column_list = ['itemid', 'url', 'experiment', 'options']
 
 def create_itemlist_per_experiment(path):
+
     annotaion_files = get_annotation_files(path)
+    column_list = ['itemid', 'url', 'experiment', 'options']
 
     for f in annotaion_files:
         f_path = path + '/' + f
@@ -65,5 +69,13 @@ def create_itemlist_per_experiment(path):
         df_items.to_csv('./item_mapping/itemlist_'+experiment_name+'.csv', sep=';')
 
 
-create_itemlist_per_experiment(path)
+
+
+if __name__=="__main__":
+
+    path = './raw_data/final_data/'
+    experiment_id_de = '2278116'
+    experiment_id_am = '2287306'
+
+    create_itemlist_per_experiment(path)
 
