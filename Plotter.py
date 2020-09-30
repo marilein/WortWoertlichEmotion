@@ -1,4 +1,19 @@
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
+
+
 import os
+from builtins import __namedtuple
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -276,27 +291,17 @@ def analyze_pitch():
     f0_f = f0_aggregation.loc[f0_aggregation['Geschlecht'] == 'weiblich']
 
     f0_aggregation = f0_aggregation.sort_values(by=['Emotion', 'Geschlecht'])
-    '''
-    sns.relplot(x="sound", y="f0_mean", hue="emotion", size="sex",
-                sizes=(40, 400), alpha=.5, palette="muted",
-                height=6, data=f0_aggregation)
-    plt.savefig('plots/f0/f0_mean.png')
-    '''
     g = sns.relplot(x="sound", y="f0_mean", hue="Emotion",col="Emotion",data=f0_aggregation, style='Geschlecht',
                      size='Geschlecht', sizes=(100, 50),row_order=['Emotion'], col_wrap=3)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
-    #g.axes.set_xticks(range(1, len(f0_aggregation['Emotion'].unique()) + 1))
-    #g.set_xticklabels(f0_aggregation['Emotion'].unique(), step=6, rotation=30)
     plt.xticks('')
 
     g.fig.suptitle('F0-Durchschnittswerte der Originalsprachaufnahmen ')
     plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
     g.fig.tight_layout()
     plt.subplots_adjust(top=0.9)
-    #plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
     plt.savefig('plots/f0/f0_mean_per_emotion_sorted_sex.png')
-
     plt.clf()
 
     g = sns.relplot(x="sound", y="f0_mean", hue="Emotion", col="Geschlecht", data=f0_aggregation)
@@ -304,33 +309,21 @@ def analyze_pitch():
     g.set_xlabels('Stimulus')
     emotion_list_long = ['Angst', '', '', '', 'Ekel', '', '', '', 'Freude', '', '', '', 'Trauer', '', '', '', 'Wut', '', '', '',
               'neutral',  '', '', '']
-
     emotion_list_short = ['Angst', 'Ekel', 'Freude',  'Trauer', 'Wut', 'neutral']
 
     for ax in g.axes.flat:#
         g.set(xticks=np.arange(2, 25, 4))
         labels = ax.get_xticklabels()  # get x labels
-        #labels = emotion_list
+
         for i, l in enumerate(labels):
             labels[i] = emotion_list_short[i]
-           #if not (i % 4 == 0): labels[i] = ''
         ax.set_xticklabels(labels)
-        
-
-
-
-    #plt.xticks(ticks=f0_aggregation['Emotion'].unique(), labels=f0_aggregation['Emotion'].unique())
-    #g.set_xticklabels(labels=['Angst','', '', '',  'Freude','', '', '', 'Ekel','', '', '', 'Wut','', '', '', 'Trauer','', '', '', 'neutral'], step=400)
-    #plt.xticks(f0_aggregation['Emotion'].unique())
 
     g.fig.suptitle('F0-Meanwerte der Originalsprachaufnahmen ')
     plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
     g.fig.tight_layout()
-
     plt.subplots_adjust(top=0.9)
-    # plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
     plt.savefig('plots/f0/f0_mean_two_in_one_sorted.png')
-
     plt.clf()
 
 
@@ -338,14 +331,12 @@ def analyze_pitch():
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
     plt.xticks('')
-
     g.fig.suptitle('F0-Medianwerte der Originalsprachaufnahmen ')
     plt.legend(loc='center right', bbox_to_anchor=(1.25, 0.5), ncol=1)
     g.fig.tight_layout()
     plt.subplots_adjust(top=0.9)
     # plt.title('F0-Durchschnittswerte der Originalsprachaufnahmen')
     plt.savefig('plots/f0/f0_median_two_in_one_sorted.png')
-
     plt.clf()
 
 
@@ -356,7 +347,6 @@ def analyze_pitch():
     plt.xlabel ('Stimulus')
     plt.xticks('')
     plt.savefig('plots/f0/f0_mean_m.png')
-
     plt.clf()
 
     sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted", data=f0_f)
@@ -366,17 +356,10 @@ def analyze_pitch():
     plt.savefig('plots/f0/f0_mean_f.png')
     plt.clf()
 
+if __name__=="__main__":
+    base_folder = 'normalized_data/'
 
-
-
-base_folder = 'normalized_data/'
-
-
-#create_countplots(base_folder)
-
-create_heatmap(base_folder)
-
-#analyze_pitch()
-
-
+    create_countplots(base_folder)
+    create_heatmap(base_folder)
+    analyze_pitch()
 
