@@ -15,6 +15,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import data_processor as dtp
+
 sns.set(color_codes=True)
 
 
@@ -25,7 +26,7 @@ def create_plots_per_emotion(path):
         f_path = path + '/' + f
         annotation_data = pd.read_csv(f_path)
         experiment_name = 'am' if annotation_data['experiment'].str.contains('(AM)').any() else 'de'
-        #json_question = annotation_data['options'].apply(json.loads)
+        # json_question = annotation_data['options'].apply(json.loads)
 
         original_label_list = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
         pitch_label_list = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
@@ -40,7 +41,8 @@ def create_plots_per_emotion(path):
 
         for original_label in original_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, original_label)
-            ax = sns.countplot(x="inputvalue", data=label_data, order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
+            ax = sns.countplot(x="inputvalue", data=label_data,
+                               order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
             ax.set(xlabel="Label")
             plt.title(experiment_name + '_' + original_label)
@@ -65,15 +67,14 @@ def create_plots_per_emotion(path):
             plt.show()
 
 
-
 def normalize_raw_data(base_path):
     raw_files = dtp.get_filelist_in_folder(base_path)
 
     for f in raw_files:
         f_path = base_path + f
-        annotation_data = pd.read_csv(f_path, sep= '\t')
+        annotation_data = pd.read_csv(f_path, sep='\t')
         experiment_language = 'am' if annotation_data['experiment'].str.contains('(AM)').any() else 'de'
-        #json_question = annotation_data['options'].apply(json.loads)
+        # json_question = annotation_data['options'].apply(json.loads)
 
         if experiment_language == 'am':
             annotation_data = dtp.replace_armenian_labels(annotation_data)
@@ -86,14 +87,15 @@ def normalize_raw_data(base_path):
         for session_id in session_list:
             df_session = dtp.get_session_data(annotation_data, session_id)
             legal_inputvalue = df_session.loc[df_session['inputvalue'] == 'Klatschen']
-            #inputvalue_klatschen['sessionid'] = session_id
-            inputvalue_klatschen.loc[inputvalue_klatschen['sessionid'] == session_id, 'Klatschen'] = legal_inputvalue.shape[0]
+            # inputvalue_klatschen['sessionid'] = session_id
+            inputvalue_klatschen.loc[inputvalue_klatschen['sessionid'] == session_id, 'Klatschen'] = \
+            legal_inputvalue.shape[0]
             inputvalue_klatschen.loc[inputvalue_klatschen['sessionid'] == session_id, 'Eingaben'] = \
-            df_session.shape[0]
+                df_session.shape[0]
             if dtp.experiment_conditions_fulfilled(df_session, experiment_language):
                 df_normalized = pd.concat([df_normalized, df_session], ignore_index=True)
 
-        #following block has been moved to data_processor module
+        # following block has been moved to data_processor module
         '''
         pat = r'({})'.format('|'.join(dtp.all_labels_dict.keys()))
         extracted = df_normalized['url'].str.extract(pat, expand=False).dropna()
@@ -103,12 +105,12 @@ def normalize_raw_data(base_path):
         df_normalized = dtp.fill_in_intended_emotions(df_normalized)
         df_naturaleness = df_normalized.loc[df_normalized['itemid'].isin([2278419, 2287438])]
         df_naturaleness['inputvalue'].to_csv(f'naturalness_{experiment_language}.csv', index=False)
-        inputvalue_klatschen.to_csv(f'overview/participants/overview/inputvalue_Klatschen_{experiment_language}.csv', index=False)
+        inputvalue_klatschen.to_csv(f'overview/participants/overview/inputvalue_Klatschen_{experiment_language}.csv',
+                                    index=False)
         df_normalized.to_csv(f'normalized_data/normalized_final_{experiment_language}.csv', index=False)
 
 
 def create_participation_overview(participants_folder):
-
     files = dtp.get_filelist_in_folder(participants_folder)
     df_overview = pd.DataFrame(columns=['Experiment', 'Teilnahmen', 'Done', 'Bestanden'])
     df_overview['Experiment'] = ['Deutsch', 'Armenisch']
@@ -116,14 +118,14 @@ def create_participation_overview(participants_folder):
         f_path = participants_folder + f
         experiment_overview = pd.read_csv(f_path)
         experiment_language = 'Armenisch' if search('_am', f) else 'Deutsch'
-        df_overview.loc[df_overview['Experiment']==experiment_language, ['Teilnahmen', 'Done', 'Bestanden']] = \
-        [experiment_overview.shape[0], experiment_overview.loc[experiment_overview['Eingaben']==151].shape[0], 'add']
+        df_overview.loc[df_overview['Experiment'] == experiment_language, ['Teilnahmen', 'Done', 'Bestanden']] = \
+            [experiment_overview.shape[0], experiment_overview.loc[experiment_overview['Eingaben'] == 151].shape[0],
+             'add']
 
     df_overview.to_csv('overview/participants/analysis/participation_overview.csv', index=False)
 
 
 def merge_experiments_data(data_folder):
-
     annotation_files = dtp.get_filelist_in_folder(data_folder)
     df_all = pd.DataFrame()
 
@@ -137,23 +139,12 @@ def merge_experiments_data(data_folder):
     df_filtered.to_csv('analyze/normalized_emotion_annotations_all.csv')
 
 
-
-
-
-if __name__=="__main__":
-
+if __name__ == "__main__":
     raw_path = 'raw_data/final_data/'
     normalize_raw_data(raw_path)
-
 
     normalized_path = './normalized_data'
     participants_folder = 'overview/participants/overview/'
     create_plots_per_emotion(normalized_path)
     merge_experiments_data('normalized_data/')
     create_participation_overview(participants_folder)
-
-
-
-
-
-

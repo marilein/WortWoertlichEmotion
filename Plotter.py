@@ -9,8 +9,6 @@
  ************************************************************************
 """
 
-
-
 import os
 from builtins import __namedtuple
 
@@ -21,15 +19,13 @@ import seaborn as sns
 import data_processor as dtp
 import matplotlib.ticker as ticker
 
-
-
 original_label_keys = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
 original_label_values = ['Angst', 'Ekel', 'Freude', 'neutral', 'Wut', 'Trauer']
 original_label_dict = dict(zip(original_label_keys, original_label_values))
-pitch_label_keys  = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
+pitch_label_keys = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
 pitch_label_values = ['Angst_F0', 'Ekel_F0', 'Freude_F0', 'neutral_F0', 'Wut_F0', 'Trauer_F0']
 pitch_label_dict = dict(zip(pitch_label_keys, pitch_label_values))
-tempo_label_keys  = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
+tempo_label_keys = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
 tempo_label_values = ['Angst_tempo', 'Ekel_tempo', 'Freude_tempo', 'neutral_tempo', 'Wut_tempo', 'Trauer_tempo']
 tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
 
@@ -41,6 +37,7 @@ def split_speaker_data(label_data):
     f_data = label_data.loc[~label_data.index.isin(m_data.index)]
 
     return [m_data, f_data]
+
 
 def create_countplots(path):
     annotaion_files = dtp.get_filelist_in_folder(path)
@@ -54,10 +51,10 @@ def create_countplots(path):
         original_label_keys = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
         original_label_values = ['Angst', 'Ekel', 'Freude', 'neutral', 'Wut', 'Trauer']
         original_label_dict = dict(zip(original_label_keys, original_label_values))
-        pitch_label_keys  = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
+        pitch_label_keys = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
         pitch_label_values = ['Angst_F0', 'Ekel_F0', 'Freude_F0', 'neutral_F0', 'Wut_F0', 'Trauer_F0']
         pitch_label_dict = dict(zip(pitch_label_keys, pitch_label_values))
-        tempo_label_keys  = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
+        tempo_label_keys = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
         tempo_label_values = ['Angst_tempo', 'Ekel_tempo', 'Freude_tempo', 'neutral_tempo', 'Wut_tempo', 'Trauer_tempo']
         tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
 
@@ -67,7 +64,6 @@ def create_countplots(path):
                 os.makedirs(experiment_plots)
             except OSError:
                 print("Creation of the directory %s failed" % path)
-
 
         for original_label in original_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, original_label)
@@ -120,15 +116,12 @@ def create_countplots(path):
                 if speaker_data["url"].str.contains("M_").any():
                     speaker = 'M_'
 
-
                 t = experiment_name + '_' + speaker + original_label_dict[original_label]
                 plt.title(t)
                 plt.savefig(f'{experiment_plots}/{t}.png')
                 plt.autoscale()
                 plt.show()
                 plt.clf()
-
-
 
         for pitch_label in pitch_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, pitch_label)
@@ -179,7 +172,7 @@ def create_countplots(path):
             plt.title(t)
             plt.savefig(f'{experiment_plots}/{t}.png')
             plt.clf()
-            #plt.show()
+            # plt.show()
 
         for tempo_label in tempo_label_keys:
             label_data = dtp.get_data_per_emotion(annotation_data, tempo_label)
@@ -230,13 +223,11 @@ def create_countplots(path):
             t = experiment_name + '_' + tempo_label_dict[tempo_label]
             plt.title(t)
             plt.savefig(f'{experiment_plots}/{t}.png')
-            #plt.show()#
+            # plt.show()#
             plt.clf()
 
 
-
 def create_heatmap(path):
-
     original_label_keys = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
     original_label_values = ['Angst', 'Ekel', 'Freude', 'neutral', 'Wut', 'Trauer']
     original_label_dict = dict(zip(original_label_keys, original_label_values))
@@ -248,16 +239,12 @@ def create_heatmap(path):
     tempo_label_dict = dict(zip(tempo_label_keys, tempo_label_values))
     all_labels_dict = {**original_label_dict, **pitch_label_dict, **tempo_label_dict}
 
-
-
     annotaion_files = dtp.get_filelist_in_folder(path)
 
     for f in annotaion_files:
         f_path = path + f
         df = pd.read_csv(f_path)
         experiment_name = 'am' if df['experiment'].str.contains('(AM)').any() else 'de'
-
-
 
         pat = r'({})'.format('|'.join(all_labels_dict.keys()))
         extracted = df['url'].str.extract(pat, expand=False).dropna()
@@ -270,16 +257,16 @@ def create_heatmap(path):
         stimuli_groups = ['original', 'pitch', 'tempo']
         for g in stimuli_groups:
             label_keys = f'{g}_label_keys'
-            df_group= df.loc[df['url'].str.contains('|'.join(eval(label_keys)))]
+            df_group = df.loc[df['url'].str.contains('|'.join(eval(label_keys)))]
 
             ft = lambda x, pos: '{:.0%}'.format(x)
 
             confusion_matrix = pd.crosstab(df_group['expected'], df_group['inputvalue'],
-                                       rownames=['Prosodischer Ausdruck'], colnames=['Annotation'],)
+                                           rownames=['Prosodischer Ausdruck'], colnames=['Annotation'], )
             confusion_matrix.to_csv(f'confusion_matrices/conf_matrix_{experiment_name}_{g}.csv')
             sns.heatmap(confusion_matrix / np.sum(confusion_matrix), annot=True,
-                        fmt='0.1%', cmap = sns.light_palette("navy"), cbar_kws={'format': ticker.FuncFormatter(ft)})
-            #cbar_kws={'format': '%.0f%%', 'ticks': [0,100]}
+                        fmt='0.1%', cmap=sns.light_palette("navy"), cbar_kws={'format': ticker.FuncFormatter(ft)})
+            # cbar_kws={'format': '%.0f%%', 'ticks': [0,100]}
             plt.title(f'{g}_{experiment_name}')
             plt.savefig(f'plots/conf_{g}_{experiment_name}.png')
             plt.show()
@@ -287,12 +274,12 @@ def create_heatmap(path):
 
 def analyze_pitch():
     f0_aggregation = pd.read_csv('f0_aggregation.csv')
-    f0_m = f0_aggregation.loc[f0_aggregation['Geschlecht']=='männlich']
+    f0_m = f0_aggregation.loc[f0_aggregation['Geschlecht'] == 'männlich']
     f0_f = f0_aggregation.loc[f0_aggregation['Geschlecht'] == 'weiblich']
 
     f0_aggregation = f0_aggregation.sort_values(by=['Emotion', 'Geschlecht'])
-    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion",col="Emotion",data=f0_aggregation, style='Geschlecht',
-                     size='Geschlecht', sizes=(100, 50),row_order=['Emotion'], col_wrap=3)
+    g = sns.relplot(x="sound", y="f0_mean", hue="Emotion", col="Emotion", data=f0_aggregation, style='Geschlecht',
+                    size='Geschlecht', sizes=(100, 50), row_order=['Emotion'], col_wrap=3)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
     plt.xticks('')
@@ -307,11 +294,12 @@ def analyze_pitch():
     g = sns.relplot(x="sound", y="f0_mean", hue="Emotion", col="Geschlecht", data=f0_aggregation)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
-    emotion_list_long = ['Angst', '', '', '', 'Ekel', '', '', '', 'Freude', '', '', '', 'Trauer', '', '', '', 'Wut', '', '', '',
-              'neutral',  '', '', '']
-    emotion_list_short = ['Angst', 'Ekel', 'Freude',  'Trauer', 'Wut', 'neutral']
+    emotion_list_long = ['Angst', '', '', '', 'Ekel', '', '', '', 'Freude', '', '', '', 'Trauer', '', '', '', 'Wut', '',
+                         '', '',
+                         'neutral', '', '', '']
+    emotion_list_short = ['Angst', 'Ekel', 'Freude', 'Trauer', 'Wut', 'neutral']
 
-    for ax in g.axes.flat:#
+    for ax in g.axes.flat:  #
         g.set(xticks=np.arange(2, 25, 4))
         labels = ax.get_xticklabels()  # get x labels
 
@@ -326,7 +314,6 @@ def analyze_pitch():
     plt.savefig('plots/f0/f0_mean_two_in_one_sorted.png')
     plt.clf()
 
-
     g = sns.relplot(x="sound", y="f0_median", hue="Emotion", col="Geschlecht", data=f0_aggregation)
     g.set_ylabels('F0 (Hz)')
     g.set_xlabels('Stimulus')
@@ -339,12 +326,11 @@ def analyze_pitch():
     plt.savefig('plots/f0/f0_median_two_in_one_sorted.png')
     plt.clf()
 
-
     f0_m = f0_m.sort_values(by='Emotion')
     f0_f = f0_f.sort_values(by='Emotion')
     sns.relplot(x="sound", y="f0_mean", hue="Emotion", palette="muted", data=f0_m)
     plt.ylabel('F0 (Hz)')
-    plt.xlabel ('Stimulus')
+    plt.xlabel('Stimulus')
     plt.xticks('')
     plt.savefig('plots/f0/f0_mean_m.png')
     plt.clf()
@@ -356,10 +342,10 @@ def analyze_pitch():
     plt.savefig('plots/f0/f0_mean_f.png')
     plt.clf()
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     base_folder = 'normalized_data/'
 
     create_countplots(base_folder)
     create_heatmap(base_folder)
     analyze_pitch()
-
