@@ -1,20 +1,22 @@
-import IPython
+"""
+ ************************************************************************
+ * This file is part of the Master thesis of the author.                *
+ *                                                                      *
+ * Project: "Wortwörtlich Emotion" - a web-experiment for studying      *
+ * cross-cultural emotion perception                                    *
+ *                                                                      *
+ *  @author: Mariam Hemmer                                              *
+ ************************************************************************
+"""
+
 import os
 from re import search
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from scipy import stats
 import data_processor as dtp
 sns.set(color_codes=True)
 
-
-normalized_path = './normalized_data'
-raw_path = 'raw_data/final_data/'
-
-#experiment_list = dtp.get_filelist_in_folder(base_path)
 
 def create_plots_per_emotion(path):
     annotaion_files = dtp.get_filelist_in_folder(path)
@@ -38,8 +40,6 @@ def create_plots_per_emotion(path):
 
         for original_label in original_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, original_label)
-            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
-            #ax = sns.barplot(x="inputvalue", y="x", data=label_data, estimator=lambda x: len(x) / label_data.shape[0] * 100)
             ax = sns.countplot(x="inputvalue", data=label_data, order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
             ax.set(xlabel="Label")
@@ -48,8 +48,6 @@ def create_plots_per_emotion(path):
 
         for pitch_label in pitch_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, pitch_label)
-            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
-            #ax = sns.barplot(x="inputvalue", y="inputvalue", data=label_data,estimator=lambda x: len(x) / label_data.shape[0] * 100)
             ax = sns.countplot(x="inputvalue", data=label_data,
                                order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
@@ -59,8 +57,6 @@ def create_plots_per_emotion(path):
 
         for tempo_label in tempo_label_list:
             label_data = dtp.get_data_per_emotion(annotation_data, tempo_label)
-            #ax = sns.catplot(x="inputvalue", kind="count", palette="ch:.25", data=label_data);
-            #ax = sns.barplot(x="inputvalue", y="inputvalue", data=label_data,estimator=lambda x: len(x) / label_data.shape[0] * 100)
             ax = sns.countplot(x="inputvalue", data=label_data,
                                order=['Freude', 'Trauer', 'Wut', 'Angst', 'Ekel', 'neutral'])
             ax.set(ylabel="Annotation")
@@ -79,15 +75,9 @@ def normalize_raw_data(base_path):
         experiment_language = 'am' if annotation_data['experiment'].str.contains('(AM)').any() else 'de'
         #json_question = annotation_data['options'].apply(json.loads)
 
-        original_label_list = ['_A.wav', '_E.wav', '_F.wav', '_s.wav', '_W.wav', '_T.wav']
-        pitch_label_list = ['A_pitch', 'E_pitch', 'F_pitch', 's_pitch', 'W_pitch', 'T_pitch']
-        tempo_label_list = ['A_tempo', 'E_tempo', 'F_tempo', 's_tempo', 'W_tempo', 'T_tempo']
-
         if experiment_language == 'am':
             annotation_data = dtp.replace_armenian_labels(annotation_data)
             annotation_data.to_csv('wowoemotion_mapped_am.csv')
-
-
 
         df_normalized = pd.DataFrame(columns=annotation_data.columns)
         session_list = dtp.get_session_list(annotation_data)
@@ -118,8 +108,8 @@ def normalize_raw_data(base_path):
 
 
 def create_participation_overview(participants_folder):
-    files = dtp.get_filelist_in_folder(participants_folder)
 
+    files = dtp.get_filelist_in_folder(participants_folder)
     df_overview = pd.DataFrame(columns=['Experiment', 'Teilnahmen', 'Done', 'Bestanden'])
     df_overview['Experiment'] = ['Deutsch', 'Armenisch']
     for f in files:
@@ -131,7 +121,9 @@ def create_participation_overview(participants_folder):
 
     df_overview.to_csv('overview/participants/analysis/participation_overview.csv', index=False)
 
+
 def merge_experiments_data(data_folder):
+
     annotation_files = dtp.get_filelist_in_folder(data_folder)
     df_all = pd.DataFrame()
 
@@ -148,16 +140,20 @@ def merge_experiments_data(data_folder):
 
 
 
+if __name__=="__main__":
+
+    raw_path = 'raw_data/final_data/'
+    normalize_raw_data(raw_path)
 
 
-participants_folder = 'overview/participants/overview/'
-#create_participation_overview(participants_folder)
+    normalized_path = './normalized_data'
+    participants_folder = 'overview/participants/overview/'
+    create_plots_per_emotion(normalized_path)
+    merge_experiments_data('normalized_data/')
+    create_participation_overview(participants_folder)
 
-#create_plots_per_emotion(base_path)
 
 
-normalize_raw_data(raw_path)
 
-#merge_experiments_data('normalized_data/')
 
 
